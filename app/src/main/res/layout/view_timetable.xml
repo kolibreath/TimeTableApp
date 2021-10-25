@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="22dp"
+        android:text="———别闹，学霸也是要睡觉的———"
+        android:textColor="@color/grey"
+        android:textSize="10sp"/>
+
+
+
+    <com.kolibreath.timetableapp.TimeTableLayout
+        android:id="@+id/layout_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_curweek_set">
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="41dp"
+            android:layout_below="@+id/divider"
+            android:layout_marginLeft="48dp"
+            android:background="@color/divider"/>
+
+        <View
+            android:layout_width="49dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="40dp"
+            android:background="@color/divider"
+            />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="-1dp"
+            android:background="@color/white" />
+
+        <com.kolibreath.timetableapp.TableContent
+            android:id="@+id/timetable_content"
+            android:layout_width="455dp"
+            android:layout_height="798dp"
+            android:layout_below="@+id/divider"
+            android:layout_marginLeft="49dp"
+            android:layout_marginTop="41dp" />
+
+        <com.kolibreath.timetableapp.WeekLayout
+            android:id="@+id/week_layout"
+            android:layout_width="455dp"
+            android:layout_height="41dp"
+            android:layout_below="@id/divider"
+            android:layout_marginLeft="49dp" />
+
+        <com.kolibreath.timetableapp.CourseTimeLayout
+            android:id="@+id/course_time_layout"
+            android:layout_width="49dp"
+            android:layout_height="798dp"
+            android:layout_below="@id/divider"
+            android:layout_marginTop="41dp" />
+
+    </com.kolibreath.timetableapp.TimeTableLayout>
+
+
+</merge>
