@@ -17,6 +17,7 @@ class DatePickerDialog(
     override fun onCreate(context: Context) {
         setContentView(R.layout.dialog_date_picker)
         val viewPager = findViewById<ViewPager2>(R.id.view_pager)
+        viewPager.setCurrentItem(3, true)
         viewPager.adapter = DateSelectViewAdapter(context)
     }
 

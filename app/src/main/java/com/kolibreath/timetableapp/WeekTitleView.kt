@@ -23,7 +23,7 @@ class WeekTitleView(
     private val TITLE_VIEW_MARGIN = contxt.dp2px(12)
     // WeekSelectView中间的每一个View的边距
     private val INNER_MARGIN = contxt.dp2px(5).toInt()
-    private val INNER_TEXT_WIDTH = (contxt.getScreenWidth() - TITLE_VIEW_MARGIN * 2) / 7 - INNER_MARGIN * 2
+    private val INNER_TEXT_WIDTH = (contxt.getScreenWidth() - (TITLE_VIEW_MARGIN + INNER_MARGIN) * 2) / 7 - 2 * INNER_MARGIN
     private val INNER_TEXT_HEIGHT = INNER_TEXT_WIDTH
 
     init {
@@ -35,7 +35,9 @@ class WeekTitleView(
 
             val layoutParams = textView.layoutParams as LinearLayout.LayoutParams
 
-            layoutParams.leftMargin = INNER_MARGIN
+            // 对于第一个View需要设置Margin
+            if(i == 0) layoutParams.leftMargin = (INNER_MARGIN + TITLE_VIEW_MARGIN ).toInt()
+            else layoutParams.leftMargin = INNER_MARGIN
             layoutParams.rightMargin = INNER_MARGIN
             layoutParams.topMargin = INNER_MARGIN
             layoutParams.bottomMargin = INNER_MARGIN

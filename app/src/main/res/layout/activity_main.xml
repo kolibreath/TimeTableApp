@@ -12,5 +12,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
 
+  <com.kolibreath.timetableapp.WeekTitleView
+      android:layout_below="@+id/test_dialog"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
 
 </RelativeLayout>

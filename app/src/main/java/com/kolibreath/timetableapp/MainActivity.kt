@@ -1,7 +1,6 @@
 package com.kolibreath.timetableapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.test_dialog)
         button.setOnClickListener {
-            if(this@MainActivity == null) Log.d("fuck", "null")
             val dialog = DatePickerDialog(this@MainActivity)
             dialog.show()
         }
