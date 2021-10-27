@@ -25,7 +25,7 @@ class WeekLayout(
             val tvWeekday = view.findViewById(R.id.tv_weekday) as TextView
             val tvDate = view.findViewById(R.id.tv_date) as TextView
 
-            tvWeekday.text = getCurrWeekday(i)
+            tvWeekday.text = num2Weekday(i)
             tvDate.text = list[i]
 
             addView(view)

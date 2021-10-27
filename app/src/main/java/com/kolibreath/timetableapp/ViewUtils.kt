@@ -46,4 +46,3 @@ fun Context.getStatusBar(): Int {
     window.decorView.getWindowVisibleDisplayFrame(rect)
     return rect.top
 }
-

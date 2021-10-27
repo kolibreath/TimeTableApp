@@ -31,7 +31,7 @@ fun getCurrDay():String{
  * 根据当前时间获取当前的星期，如Monday Tuesday
  * @return 当前的日期所对应的时间
  */
-fun getCurrWeekday(): String {
+fun num2Weekday(): String {
     return when(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)){
         Calendar.MONDAY -> "Monday"
         Calendar.TUESDAY -> "Tuesday"
@@ -46,8 +46,9 @@ fun getCurrWeekday(): String {
 
 /**
  * 根据数字获取当前的星期
+ * @param number 从0开始
  */
-fun getCurrWeekday(number: Int): String {
+fun num2Weekday(number: Int): String {
     return when(number){
         0 -> "Monday"
         1 -> "Tuesday"
@@ -57,6 +58,28 @@ fun getCurrWeekday(number: Int): String {
         5 -> "Saturday"
         6 -> "Sunday"
         else -> {""}
+    }
+}
+
+/**
+ * 格局月份数字转化成对应的中文
+ * @param number 从1开始
+ */
+fun num2MonthInCn(number: Int): String {
+    return when(number) {
+        1 -> "一月"
+        2 -> "二月"
+        3 -> "三月"
+        4 -> "四月"
+        5 -> "五月"
+        6 -> "六月"
+        7 -> "七月"
+        8 -> "八月"
+        9 -> "九月"
+        10 -> "十月"
+        11 -> "十一月"
+        12 -> "十二月"
+        else -> ""
     }
 }
 

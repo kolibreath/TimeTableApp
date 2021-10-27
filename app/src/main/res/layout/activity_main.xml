@@ -6,16 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-  <RelativeLayout
-      android:id="@+id/container"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" />
-  
-  <com.kolibreath.timetableapp.WeekTitleView
-      android:id="@+id/week_title_view"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
 
+  <Button
+      android:id="@+id/test_dialog"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

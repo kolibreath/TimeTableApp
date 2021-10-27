@@ -20,9 +20,9 @@ class WeekTitleView(
     private val dayString = arrayOf("日", "一", "二", "三", "四", "五", "六")
 
     // 左右边距
-    private val TITLE_VIEW_MARGIN = contxt.dp2px(3)
+    private val TITLE_VIEW_MARGIN = contxt.dp2px(12)
     // WeekSelectView中间的每一个View的边距
-    private val INNER_MARGIN = contxt.dp2px(12).toInt()
+    private val INNER_MARGIN = contxt.dp2px(5).toInt()
     private val INNER_TEXT_WIDTH = (contxt.getScreenWidth() - TITLE_VIEW_MARGIN * 2) / 7 - INNER_MARGIN * 2
     private val INNER_TEXT_HEIGHT = INNER_TEXT_WIDTH
 
