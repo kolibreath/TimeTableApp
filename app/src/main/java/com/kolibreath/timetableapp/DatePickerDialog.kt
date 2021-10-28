@@ -19,6 +19,7 @@ class DatePickerDialog(
         val viewPager = findViewById<ViewPager2>(R.id.view_pager)
         viewPager.setCurrentItem(3, true)
         viewPager.adapter = DateSelectViewAdapter(context)
+
     }
 
     override fun setBackgroundDrawableRes(resId: Int, window: Window) {

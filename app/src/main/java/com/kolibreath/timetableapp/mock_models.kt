@@ -14,6 +14,7 @@ data class Course(
     val dbId:Int? = 0
 )
 
+// todo equals 需要搬过去
 // 课程时间段
 data class CourseTime(
     val id: String,
@@ -109,6 +110,46 @@ class DerivedSchedule(
     val cellColorId: Int = 0,
     val scheduleId: String = "",
     val courseId: Int = 0
+)
+
+/**
+ * 日程详情有三种类型：
+ * 1. 课程
+ * 2. 日程 （用户自定义添加）
+ * 3. divider ： 在显示的时候的分割线
+ *
+ * 课程类型必须填写的内容,eg:
+ * WeeklyScheduleDetail(
+    detailType = 0,
+    name = "高等工程数学",
+    location = "N636",
+    time = "周一 8:00~9:00 (第1-2节)",
+    week = "1~18周",
+    teacher = "五十岚一辉"
+)
+ * 日程类型必须填写的内容，eg:
+ *  WeeklyScheduleDetail(
+        detailType = 1,
+        location = "N517",
+        time = "周一 5月29日 9:00~9:40",
+        type = "运动",
+        week = "18周",
+        description = "这是一个简单的日程"
+    )
+ */
+data class WeeklyScheduleDetail(
+    val detailType: Int = 0, // 日程 = 1 课程 = 0 如果是divider -1课程占多数 默认为0，
+    val name: String = "",   // 为日程时没有课程名称
+    val location: String,
+    // 格式样式:
+    // 课程：周数 时间段 (节数)：如 周一 8:00~9:00 (第1-2节)
+    // 日程: 周数 日期 时间段   如 周一 5月29日 9:00~9:40
+    val time: String,
+    val week: String, // 格式样式 1~18周
+    val teacher: String = "",
+    val type: String = "", // 日程的类型 如 运动 上课 ....
+    val description: String = "",
+    val note: String = "" // 自定义添加的备注信息
 )
 
 //TODO 后续时间表Id

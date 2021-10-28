@@ -36,7 +36,7 @@ class DateSelectViewAdapter(
 // todo inner and internal class of Kotlin, what is the difference?
 // 只允许设置今年内的事件
 class DateSelectViewHolder internal constructor(
-    val rootView: View
+    private val rootView: View
 ): RecyclerView.ViewHolder(rootView) {
 
     private val tvMonth: TextView = rootView.findViewById(R.id.tv_month)

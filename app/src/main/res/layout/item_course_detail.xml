@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <!--    todo unifying this in dimen.xml-->
+
+    <ImageButton
+        android:id="@+id/ib_course_name"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/ib_course_name"
+        android:gravity="center"
+        android:text="大学体育"
+        android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/ib_location"
+        android:layout_below="@+id/ib_course_name"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="20dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_below="@+id/ib_course_name"
+        android:layout_toRightOf="@id/ib_location"
+        android:layout_margin="20dp"
+        android:textSize="16sp"
+        android:text="乒乓球馆"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"/>
+
+    <ImageButton
+        android:id="@+id/ib_time"
+        android:layout_below="@+id/ib_location"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="20dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:id="@+id/tv_course_time"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@+id/ib_location"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/ib_time"
+        android:gravity="center"
+        android:text="周一 8:00~9:00 （第1-2节）"
+        android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/ib_week"
+        android:layout_below="@+id/ib_time"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="20dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:id="@+id/tv_week"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@+id/ib_time"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/ib_time"
+        android:gravity="center"
+        android:text="1~18周"
+        android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/ib_course_teacher"
+        android:layout_below="@+id/ib_week"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="20dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:id="@+id/tv_course_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@+id/ib_week"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/ib_time"
+        android:gravity="center"
+        android:text="蔡明"
+        android:textSize="16sp" />
+
+<!--    备注 可选填，如果没有则不显示-->
+    <ImageButton
+        android:id="@+id/ib_note"
+        android:layout_below="@+id/ib_course_teacher"
+        android:visibility="gone"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="20dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@+id/ib_course_teacher"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/ib_time"
+        android:gravity="center"
+        android:text="简单的备注"
+        android:visibility="gone"
+        android:textSize="16sp" />
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.kolibreath.timetableapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             dialog.show()
         }
 
+        Log.d("window-display", "Activity ${windowManager.defaultDisplay.width.toString()}")
     }
 
     override fun onResume() {
