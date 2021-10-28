@@ -5,6 +5,9 @@ import android.util.AttributeSet
 import android.widget.RelativeLayout
 import android.widget.Scroller
 
+/**
+ * 包括了中间TableContent，左侧课程时间CourseTimeLayout和上边WeekLayout三个部分的视图
+ */
 class TimeTableLayout(
     private val contxt: Context,
     private val attributeSet: AttributeSet

@@ -120,8 +120,41 @@ class TimeTableFragment: BaseFragment(){
             weeks = "1,2,3,4,5,6",
         )
 
+        val courseTime7 = CourseTime(
+            id = "7",
+            place = "N636",
+            teacher = "郭京蕾",
+            dayOfWeek = 4,
+            courseTime = "5,6",
+            courseId = "1",
+            weeks = "1,2,3,4,5,6",
+        )
+
+        val courseTime8 = CourseTime(
+            id = "8",
+            place = "N636",
+            teacher = "郭京蕾",
+            dayOfWeek = 4,
+            courseTime = "5,6",
+            courseId = "1",
+            weeks = "1,2,3,4,5,6",
+        )
+
+        val courseTime9 = CourseTime(
+            id = "9",
+            place = "N632",
+            teacher = "赵卫中",
+            dayOfWeek = 1,
+            courseTime = "5,6",
+            courseId = "3",
+            weeks = "1,2,3,4,5,6",
+        )
+
         val courses = arrayListOf(course1, course2, course3)
-        val courseTimes = arrayListOf(courseTime1, courseTime4, courseTime3, courseTime5, courseTime2, courseTime6)
+        val courseTimes = arrayListOf(
+            courseTime1, courseTime4, courseTime3,
+            courseTime5, courseTime2, courseTime6,
+            courseTime7, courseTime8, courseTime9)
 
         this.courses = courses
         this.courseTimeList = courseTimes

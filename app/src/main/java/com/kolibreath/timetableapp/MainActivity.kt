@@ -1,9 +1,7 @@
 package com.kolibreath.timetableapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -37,20 +35,13 @@ class MainActivity : AppCompatActivity() {
 //        tvWeekSelect.setOnClickListener(weekSelectListener)
 //        ivWeekSelect.setOnClickListener(weekSelectListener)
 
-//        Preference(this).put(CUR_WEEK, getCurrWeekNum())
-//        val fragment = TimeTableFragment.newInstance()
-//        val fragmentManager = supportFragmentManager
-//        val transaction = fragmentManager.beginTransaction()
-//        transaction.add(R.id.container, fragment, "fff")
-//        transaction.commit()
+        Preference(this).put(CUR_WEEK, getCurrWeekNum())
+        val fragment = TimeTableFragment.newInstance()
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.add(R.id.container, fragment, "fff")
+        transaction.commit()
 
-        val button = findViewById<Button>(R.id.test_dialog)
-        button.setOnClickListener {
-            val dialog = DatePickerDialog(this@MainActivity)
-            dialog.show()
-        }
-
-        Log.d("window-display", "Activity ${windowManager.defaultDisplay.width.toString()}")
     }
 
     override fun onResume() {

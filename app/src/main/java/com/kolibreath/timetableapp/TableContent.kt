@@ -8,13 +8,12 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
+import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.Scroller
 
-// 课程表主要内容部分
-// 一天中课程最多12节，一周最多7天
-
 /**
+ * 周视图主要内容部分，
  * 加载TableContent之前必须要传入:
  * @see courses 课程
  * @see courseTimes 课程对应的上课时间
@@ -98,14 +97,50 @@ class TableContent(
         for (curCourseTime in courseTimes) {
             if (drawnCourseTimeList.contains(curCourseTime)) continue
             val overlapCourses = getOverlapCourses(curCourseTime)
+            // 找出完全重叠的课程 完全重叠的课程只绘制一次
+            val cpOverlapCourses = getCpOverlapCourses(overlapCourses)
+            if (cpOverlapCourses.isNotEmpty()) {
+                // 1 2 3 4 中 1 2 完全重叠 移除 1 2 再添加 1
+                // 原来的list变成1 3 4 确保只绘制一次
+                overlapCourses.removeAll(cpOverlapCourses)
+                overlapCourses.add(cpOverlapCourses[0])
+            }
+
             // 绘制这些重复的courseTime
-            for (overlapCourse in overlapCourses) addCourseView(overlapCourse)
+            for (overlapCourse in overlapCourses) {
+                addCourseView(overlapCourse, cpOverlapCourses.contains(overlapCourse))
+            }
             drawnCourseTimeList.addAll(overlapCourses)
         }
     }
 
     /**
-     * 指定课程节数
+     * 课程出现UI上交集的情况，一下的情况限定在A和B课程都在一天内
+     * 1. 同时间开始，A课程结束时间晚于B课程
+     * 2. 不同时间开始，A课程开始时间早于B，A结束时间晚于B开始时间
+     * 3. 同时间开始，同时间结束
+     * 以上情况都在getOverlapCourses中被作为有交集的课程返回，并且通过时间确定绘制顺序，保证不会出现短时间
+     * 被长时间遮盖，通过UI可以直观显示这个是两门课程，但是如果是完全重叠的两门课程，需要额外处理
+     *
+     * @param courses 通过getOverlapCourses获取的有交集的课程
+     * @return 有交集的课程中时间上完全重叠的课程
+     */
+    private fun getCpOverlapCourses(courses: List<CourseTime>): ArrayList<CourseTime> {
+        val result = ArrayList<CourseTime>()
+        for (i in courses.indices) {
+            val temp = ArrayList<CourseTime>().apply { add(courses[i]) }
+            for(j in i+1 until courses.size) {
+                if(check4CpOverlap(courses[i], courses[j])) {
+                    temp.add(courses[j])
+                }
+            }
+            if (temp.size != 1) return temp
+        }
+        return result
+    }
+
+    /**
+     * 给用户自定义的日程（这种情况没有课程节数）指定课程节数，比如8:00-9:00 是第1-2节课
      * @param courseTime 向其中写入courseTime 字符串 "1,2,3"
      */
     private fun assignCourseTime(courseTime: CourseTime){
@@ -147,10 +182,9 @@ class TableContent(
     /**
      * 添加单个View
      */
-    private fun addCourseView(courseTime: CourseTime) {
+    private fun addCourseView(courseTime: CourseTime, tipOn: Boolean = false) {
         val courseView = CourseView(contxt)
-        // TODO 考虑完全重叠课程
-//        courseView.tipOn = overlapCourse(course.id.toInt())
+        courseView.tipOn = tipOn
 
         courseView.setTextColor(Color.WHITE)
         courseView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
@@ -161,7 +195,7 @@ class TableContent(
 
         var during = 0f // 这一节课经过的时间所对应的一节课的比例
         var topMargin:Float = startMorning.size * COURSE_HEIGHT      // 这一节课相对于顶部的margin
-        // TODO schedules before 8:00
+
         if (!assignCourseTimeList.contains(courseTime)) {
             // case1: 使用课程节数设置的时间
             val tempList = courseTime.courseTime!!.split(",").map { it.toInt() }
@@ -206,6 +240,7 @@ class TableContent(
         val curWeek = weekNum in courseTime.weeks.split(",").map { it.toInt()}
 
         courseView.text = ellipseText(courseTime, curWeek)
+        courseView.gravity = Gravity.CENTER
 
         val color = if (curWeek) getCourseByTime(courseTime, courses)!!.colorId else contxt.resources.getColor(R.color.grey)
         courseView.setBackgroundColor(color)
@@ -238,11 +273,10 @@ class TableContent(
     }
 
     /**
-     *   将当前课程的开始结束时间同一转换成时间戳 ，查看当前课程和另外一节课程有无重叠
-     *   重叠的课程判断标准
-     *   1. 首先在相同的天(在相同的天，但是不在相同的周，绘制的时候也可能出现重叠的情况)
-     *   2. (另外一节课的开始时间 >= 这一节课的结束时间 && 另外一节课的结束时间 <= 这一节课的结束时间)
-     *   || (另外一节课的开始时间 <= 这一节课的结束时间 && 另外一节课的结束时间 >= 这一节课的结束时间)
+     *   将当前课程的开始结束时间同一转换成时间戳 ，查看当前课程和另外一节课程有无交集
+     *   交集的课程判断标准
+     *   1. 首先在相同的天(在相同的天，但是不在相同的周，绘制的时候也可能出现交集的情况)
+     *   2. 另外一节课的结束时间 晚于 当前课程开始时间 || 当前这节课的结束时间 > 另外课程开始时间
      *   @param curCourseTime 当前的课程时间
      *   @param time 数据库中的另外一节课程时间
      */
@@ -250,8 +284,20 @@ class TableContent(
         val curTimes = courseTime2Stamp(curCourseTime)
         // 如果两节课不同一天
         if (time.dayOfWeek != curCourseTime.dayOfWeek) return false
-        val times = courseTime2Stamp(curCourseTime)
-        if ((times[0] >= curTimes[0] && (times[1] <= curTimes[1]) || times[0] <= curTimes[0] && times[1] >= curTimes[1]))
+        val times = courseTime2Stamp(time)
+        if (curTimes[1] > times[0] || curTimes[0] > times[1])
+            return true
+
+        return false
+    }
+
+    // 检查完全重叠
+    private fun check4CpOverlap(curCourseTime: CourseTime, time: CourseTime): Boolean {
+        val curTimes = courseTime2Stamp(curCourseTime)
+        // 如果两节课不同一天
+        if (time.dayOfWeek != curCourseTime.dayOfWeek) return false
+        val times = courseTime2Stamp(time)
+        if ((times[0] == curTimes[0] && times[1] == curTimes[1]))
             return true
 
         return false
@@ -259,15 +305,17 @@ class TableContent(
 
     /**
      * 任务目标：
-     * 1. 将当前的课程和数据库中的其他的课程时间向对比，找出所有重叠的课程
-     * eg, A B C D E F G 中 A B 重叠 B C 重叠，但是A C 不直接重叠，这种情况会将A B C 放入一个集合并且作为返回值
-     * 2. 避免重复绘制，出现重叠的课程被加入
+     * 1. 将当前的课程和数据库中的其他的课程时间向对比，找出所有时间上有交集的课程
+     * eg, A B C D E F G 中 A B 有交集 B C 有交集，但是A C 不存在直接交集，这种情况会将A B C 放入一个集合并且作为返回值
+     * 2. 避免重复绘制，出现交集（不论是间接还是直接）的课程被加入
+     * 3. 得到出现交集的课程之后将这些时间按照时间长度降序排列，保证可以先绘制时间较长的课程，时间较短的课程会出现在较长时间
+     * 的上面
      * @see drawnCourseTimeList
      *
      * @param  curCourseTime 查找所有可能出现的课程
      * @return  如果返回List size 大于1，说明当前courseTime存在重复
      */
-    private fun getOverlapCourses(curCourseTime: CourseTime): List<CourseTime> {
+    private fun getOverlapCourses(curCourseTime: CourseTime): ArrayList<CourseTime> {
         val overlap = ArrayList<CourseTime>().apply { add(curCourseTime) }
         for (time in courseTimes) {
             if (curCourseTime == time) continue
@@ -287,8 +335,11 @@ class TableContent(
                 if (!overlap.contains(time)) overlap.add(time)
             }
         }
-        return overlap
 
+        return ArrayList(overlap.sortedByDescending {
+            val times = courseTime2Stamp(it)
+            times[times.size-1] - times[0]
+        })
     }
 
     // 找到CourseTime对应的Course

@@ -7,6 +7,9 @@ import android.view.MotionEvent
 import android.widget.RelativeLayout
 import android.widget.Scroller
 
+/**
+ * 掌管着整个课程表内容的显示、事件处理、滑动处理工作
+ */
 class TimeTable(
     private val contxt: Context,
     private val attributeSet: AttributeSet

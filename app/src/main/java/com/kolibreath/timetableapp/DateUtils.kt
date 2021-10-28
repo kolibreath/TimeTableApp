@@ -123,8 +123,9 @@ fun getCurrWeekNum(): Int{
 fun courseTime2Stamp(courseTime: CourseTime): Array<Long>{
     return if(courseTime.courseTime != null) {
         val tempList = courseTime.courseTime!!.split(",").map { it.toInt() }
-        val startTime = startTimes[tempList[0]-1]
-        val endTime = endTimes[tempList[tempList.size-1]-1]
+        val before = startMorning.size
+        val startTime = startTimes[before + tempList[0]-1]
+        val endTime = endTimes[before + tempList[tempList.size-1]-1]
 
         val startTimeString = "$schoolStartTime $startTime"
         val endTimeString = "$schoolStartTime $endTime"
