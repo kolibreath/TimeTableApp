@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:layout_height="wrap_content">
 
-    <!--    todo unifying this in dimen.xml-->
+    <!--    todo unifying this in dimens.xml-->
 
     <ImageButton
         android:id="@+id/ib_course_name"
