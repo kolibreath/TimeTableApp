@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,10 @@ import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.kolibreath.timetableapp.R
+import com.kolibreath.timetableapp.WeeklyScheduleDetail
+import com.kolibreath.timetableapp.dp2px
+import com.kolibreath.timetableapp.getScreenWidth
 
 /**
  * 加载详情类型的Adapter 主要有三种类型：

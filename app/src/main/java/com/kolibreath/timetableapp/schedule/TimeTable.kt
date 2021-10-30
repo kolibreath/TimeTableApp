@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.RelativeLayout
 import android.widget.Scroller
+import com.kolibreath.timetableapp.R
+import com.kolibreath.timetableapp.dp2px
+import com.kolibreath.timetableapp.getScreenWidth
+import com.kolibreath.timetableapp.startMorning
 
 /**
  * 掌管着整个课程表内容的显示、事件处理、滑动处理工作

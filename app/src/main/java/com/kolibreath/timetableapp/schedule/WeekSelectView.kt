@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.graphics.Color
@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.animation.TranslateAnimation
 import android.widget.GridLayout
 import android.widget.TextView
+import com.kolibreath.timetableapp.*
 
 // 控制周数选择的View
 // 在xml中，WeekSelectView设置状态为隐藏
@@ -22,11 +23,11 @@ class WeekSelectView(
      */
     private val weekTextViews: Array<TextView> = Array(21){TextView(contxt)}
     // WeekSelectView 左右边距
-    private val WEEK_SELECT_VIEW_MARGIN = contxt.dp2px(16)
+    private val horMargin = contxt.dp2px(16)
     // WeekSelectView中间的每一个View的边距
-    private val SELECTED_VIEW_MARGIN = contxt.dp2px(12).toInt()
-    private val SELECTED_VIEW_HEIGHT = (contxt.getScreenWidth() - WEEK_SELECT_VIEW_MARGIN * 2) / 7 - SELECTED_VIEW_MARGIN * 2
-    private val SELECTED_VIEW_WIDTH = SELECTED_VIEW_HEIGHT
+    private val innerViewMargin = contxt.dp2px(12).toInt()
+    private val innerViewHeight = (contxt.getScreenWidth() - horMargin * 2) / 7 - innerViewMargin * 2
+    private val innerViewWidth = innerViewHeight
 
     // 标记上一个选中的周数下标 默认设置为当前周
     private var lastSelectedWeekPos = Preference(contxt).get(CUR_WEEK,-1)-1
@@ -55,13 +56,13 @@ class WeekSelectView(
             textView.setTextColor(Color.BLACK)
             textView.gravity = Gravity.CENTER
 
-            addView(textView, SELECTED_VIEW_HEIGHT.toInt(), SELECTED_VIEW_HEIGHT.toInt())
+            addView(textView, innerViewHeight.toInt(), innerViewHeight.toInt())
 
             val gridLayoutParams = textView.layoutParams as GridLayout.LayoutParams
-            gridLayoutParams.leftMargin = SELECTED_VIEW_MARGIN
-            gridLayoutParams.rightMargin = SELECTED_VIEW_MARGIN
-            gridLayoutParams.topMargin = SELECTED_VIEW_MARGIN
-            gridLayoutParams.bottomMargin = SELECTED_VIEW_MARGIN
+            gridLayoutParams.leftMargin = innerViewMargin
+            gridLayoutParams.rightMargin = innerViewMargin
+            gridLayoutParams.topMargin = innerViewMargin
+            gridLayoutParams.bottomMargin = innerViewMargin
 
 
             // 初始选中为当前周
@@ -81,7 +82,7 @@ class WeekSelectView(
     }
 
     fun slideUp() {
-        slide(-contxt.dp2px(SELECTED_VIEW_HEIGHT.toInt() * 3).toInt())
+        slide(-contxt.dp2px(innerViewHeight.toInt() * 3).toInt())
         slideStatus = WeekSelectViewStatus.CLOSED
     }
 
@@ -97,7 +98,7 @@ class WeekSelectView(
             TranslateAnimation(
                 0f,
                 0f,
-                -contxt.dp2px((SELECTED_VIEW_HEIGHT.toInt() + (contxt.dp2px(24)) * 3).toInt()),
+                -contxt.dp2px((innerViewHeight.toInt() + (contxt.dp2px(24)) * 3).toInt()),
                 0f
             )
         }

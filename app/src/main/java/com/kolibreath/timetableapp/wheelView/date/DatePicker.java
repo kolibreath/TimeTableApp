@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.wheelView;
+package com.kolibreath.timetableapp.wheelView.date;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,9 +1,10 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import androidx.appcompat.widget.AppCompatTextView
+import com.kolibreath.timetableapp.R
 
 
 // 显示课程的View

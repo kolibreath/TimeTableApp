@@ -1,9 +1,13 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
+import com.kolibreath.timetableapp.R
+import com.kolibreath.timetableapp.getCurrWeekNum
+import com.kolibreath.timetableapp.getWholeWeek4CurWeekNum
+import com.kolibreath.timetableapp.num2Weekday
 
 // 课程表顶部显示当前的时间的View
 class WeekLayout(

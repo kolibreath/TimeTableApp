@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.add_schedule
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

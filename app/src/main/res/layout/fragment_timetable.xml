@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.kolibreath.timetableapp.TimeTable
+    <com.kolibreath.timetableapp.schedule.TimeTable
         android:id="@+id/timetable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.kolibreath.timetableapp.WeekSelectView
+    <com.kolibreath.timetableapp.schedule.WeekSelectView
         android:id="@+id/view_week_select"
         android:layout_marginTop="56dp"
         android:layout_width="match_parent"

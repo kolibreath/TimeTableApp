@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.graphics.Color
@@ -6,6 +6,8 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.kolibreath.timetableapp.dp2px
+import com.kolibreath.timetableapp.getScreenWidth
 
 /**
  * 显示月份中日期对应的周数从周日开始

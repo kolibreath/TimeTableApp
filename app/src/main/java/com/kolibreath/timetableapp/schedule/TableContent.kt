@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,6 +11,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.Scroller
+import com.kolibreath.timetableapp.*
 
 /**
  * 周视图主要内容部分，
@@ -144,12 +145,16 @@ class TableContent(
      * @param courseTime 向其中写入courseTime 字符串 "1,2,3"
      */
     private fun assignCourseTime(courseTime: CourseTime){
-        val startTime = "${getHourFromDate(courseTime.customStartTime!!)}:${getMinuteFromDate(
+        val startTime = "${getHourFromDate(courseTime.customStartTime!!)}:${
+            getMinuteFromDate(
             courseTime.customStartTime
-        )}"
-        val endTime = "${getHourFromDate(courseTime.customEndTime!!)}:${getMinuteFromDate(
+        )
+        }"
+        val endTime = "${getHourFromDate(courseTime.customEndTime!!)}:${
+            getMinuteFromDate(
             courseTime.customEndTime
-        )}"
+        )
+        }"
 
         val startMinute = time2minute(startTime)
         val endMinute = time2minute(endTime)
@@ -204,12 +209,16 @@ class TableContent(
             during = step.toFloat()
         }else {
             // case:2 手动设置的时间
-            val startTime = "${getHourFromDate(courseTime.customStartTime!!)}:${getMinuteFromDate(
+            val startTime = "${getHourFromDate(courseTime.customStartTime!!)}:${
+                getMinuteFromDate(
                 courseTime.customStartTime
-            )}"
-            val endTime = "${getHourFromDate(courseTime.customEndTime!!)}:${getMinuteFromDate(
+            )
+            }"
+            val endTime = "${getHourFromDate(courseTime.customEndTime!!)}:${
+                getMinuteFromDate(
                 courseTime.customEndTime
-            )}"
+            )
+            }"
 
             val startMinute = time2minute(startTime)
             val endMinute = time2minute(endTime)
@@ -242,7 +251,9 @@ class TableContent(
         courseView.text = ellipseText(courseTime, curWeek)
         courseView.gravity = Gravity.CENTER
 
-        val color = if (curWeek) getCourseByTime(courseTime, courses)!!.colorId else contxt.resources.getColor(R.color.grey)
+        val color = if (curWeek) getCourseByTime(courseTime, courses)!!.colorId else contxt.resources.getColor(
+            R.color.grey
+        )
         courseView.setBackgroundColor(color)
 
         addView(courseView, courseParams)

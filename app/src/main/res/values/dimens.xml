@@ -7,4 +7,13 @@
     <dimen name="WheelMargins">8dp</dimen>
     <dimen name="WheelItemHeightSpace">16dp</dimen>
     <dimen name="WheelItemWidthSpace">32dp</dimen>
+
+    <!--   fragment_add_course-->
+    <!--   第一个view距离top的dp-->
+    <dimen name="fac_margin_top">20dp</dimen>
+    <!--  View距离左边的距离  -->
+    <dimen name="fac_item_margin_left">20dp</dimen>
+    <!--  垂直方向View和View之间的间隔  -->
+    <dimen name="fac_ver_item_margin_top">20dp</dimen>
+
 </resources>

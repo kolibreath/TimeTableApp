@@ -3,6 +3,7 @@ package com.kolibreath.timetableapp
 import android.os.Bundle
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import com.kolibreath.timetableapp.schedule.TimeTableFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

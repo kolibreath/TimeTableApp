@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<RelativeLayout-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <!--    <com.google.android.material.tabs.TabLayout-->
 <!--        android:id="@+id/tl_add_schedule"-->
@@ -21,32 +21,45 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/tl_add_schedule"-->
 <!--        />-->
 
-<!--</RelativeLayout>-->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:padding="8dp"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.kolibreath.timetableapp.wheelView.DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/test"
+        android:text="test"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/button"
-        android:text="Show Dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</LinearLayout>
+</RelativeLayout>
+
+<!--<LinearLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_date"-->
+<!--        android:padding="8dp"-->
+<!--        android:textSize="18sp"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.kolibreath.timetableapp.wheelView.date.DatePicker-->
+<!--        android:id="@+id/datePicker"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <com.kolibreath.timetableapp.wheelView.time.HourAndMinutePicker-->
+<!--        android:id="@+id/hour_minute_picker"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:text="Show Dialog"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--</LinearLayout>-->

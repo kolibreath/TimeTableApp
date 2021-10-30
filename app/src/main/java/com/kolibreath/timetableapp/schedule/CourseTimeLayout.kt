@@ -1,9 +1,13 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
+import com.kolibreath.timetableapp.R
+import com.kolibreath.timetableapp.endTimes
+import com.kolibreath.timetableapp.startMorning
+import com.kolibreath.timetableapp.startTimes
 
 // 在课程表的左侧 表示当前课程安排的起始结束时间以及课程编号
 class CourseTimeLayout(

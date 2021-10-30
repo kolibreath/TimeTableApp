@@ -10,14 +10,15 @@
        android:id="@+id/tv_add_course_name"
        app:layout_constraintLeft_toLeftOf="parent"
        app:layout_constraintTop_toTopOf="parent"
-       android:layout_marginTop="20dp"
-       android:layout_marginLeft="20dp"
-       android:text="课程"
+       android:layout_marginTop="@dimen/fac_margin_top"
+       android:layout_marginLeft="@dimen/fac_item_margin_left"
+       android:text="@string/course_name"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/edt_add_course_name"
+        android:background="@drawable/round_text_background"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_add_course_name"
         app:layout_constraintLeft_toRightOf="@id/tv_add_course_name"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,31 +27,160 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>
 
-
     <TextView
-        android:id="@+id/tv_add_week"
+        android:id="@+id/tv_type"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_add_course_name"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="星期"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/course_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-<!--    <EditText-->
-<!--        android:id="@+id/edt_"-->
-<!--        app:layout_constraintBaseline_toBaselineOf="@+id/tv_add_week"-->
-<!--        app:layout_constraintLeft_toRightOf="@id/tv_add_week"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"/>-->
+    <EditText
+        android:id="@+id/edt_type"
+        android:background="@drawable/round_text_background"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_type"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
 
-<!--    <TextView-->
-<!--        android:text="节数"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
+    <TextView
+        android:id="@+id/tv_location"
+        android:background="@drawable/round_text_background"
+        app:layout_constraintTop_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/course_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edt_location"
+        android:background="@drawable/round_text_background"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_location"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+
+     <TextView
+         android:id="@+id/tv_teacher"
+         android:background="@drawable/round_text_background"
+         app:layout_constraintTop_toBottomOf="@id/tv_location"
+         app:layout_constraintLeft_toLeftOf="parent"
+         android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+         android:layout_marginLeft="@dimen/fac_item_margin_left"
+         android:text="@string/course_teacher"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"/>
+
+ <EditText
+     android:id="@+id/edt_teacher"
+     android:background="@drawable/round_text_background"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="20dp"
+     android:layout_marginRight="20dp"
+     app:layout_constraintBaseline_toBaselineOf="@+id/tv_teacher"
+     app:layout_constraintLeft_toRightOf="@id/tv_type"
+     app:layout_constraintRight_toRightOf="parent" />
+
+ <TextView
+     android:id="@+id/tv_priority"
+     android:background="@drawable/round_text_background"
+     app:layout_constraintTop_toBottomOf="@id/tv_teacher"
+     app:layout_constraintLeft_toLeftOf="parent"
+     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+     android:layout_marginLeft="@dimen/fac_item_margin_left"
+     android:text="@string/priority"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+
+ <EditText
+     android:id="@+id/edt_priority"
+     android:background="@drawable/round_text_background"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="20dp"
+     android:layout_marginRight="20dp"
+     app:layout_constraintBaseline_toBaselineOf="@+id/tv_priority"
+     app:layout_constraintLeft_toRightOf="@id/tv_type"
+     app:layout_constraintRight_toRightOf="parent" />
+
+ <TextView
+     android:id="@+id/tv_note"
+     android:background="@drawable/round_text_background"
+     app:layout_constraintTop_toBottomOf="@id/tv_priority"
+     app:layout_constraintLeft_toLeftOf="parent"
+     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+     android:layout_marginLeft="@dimen/fac_item_margin_left"
+     android:text="@string/note"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+
+ <EditText
+     android:id="@+id/edt_note"
+     android:background="@drawable/round_text_background"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="20dp"
+     android:layout_marginRight="20dp"
+     app:layout_constraintBaseline_toBaselineOf="@+id/tv_note"
+     app:layout_constraintLeft_toRightOf="@id/tv_type"
+     app:layout_constraintRight_toRightOf="parent" />
+
+
+ <TextView
+     android:id="@+id/tv_week_num"
+     android:background="@drawable/round_text_background"
+     app:layout_constraintTop_toBottomOf="@id/tv_note"
+     app:layout_constraintLeft_toLeftOf="parent"
+     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+     android:layout_marginLeft="@dimen/fac_item_margin_left"
+     android:text="@string/week_num"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+
+ <EditText
+     android:id="@+id/edt_week_num"
+     android:background="@drawable/round_text_background"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="20dp"
+     android:layout_marginRight="20dp"
+     app:layout_constraintBaseline_toBaselineOf="@+id/tv_week_num"
+     app:layout_constraintLeft_toRightOf="@id/tv_type"
+     app:layout_constraintRight_toRightOf="parent" />
+
+ <TextView
+     android:id="@+id/tv_time"
+     android:background="@drawable/round_text_background"
+     app:layout_constraintTop_toBottomOf="@id/tv_week_num"
+     app:layout_constraintLeft_toLeftOf="parent"
+     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+     android:layout_marginLeft="@dimen/fac_item_margin_left"
+     android:text="@string/time"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+
+ <EditText
+     android:id="@+id/edt_time"
+     android:background="@drawable/round_text_background"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="20dp"
+     android:layout_marginRight="20dp"
+     app:layout_constraintBaseline_toBaselineOf="@+id/tv_time"
+     app:layout_constraintLeft_toRightOf="@id/tv_type"
+     app:layout_constraintRight_toRightOf="parent" />
 
 
 

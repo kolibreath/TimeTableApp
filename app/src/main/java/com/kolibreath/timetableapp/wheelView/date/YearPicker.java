@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.wheelView;
+package com.kolibreath.timetableapp.wheelView.date;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +24,15 @@ public class YearPicker extends WheelPicker<Integer> {
         this(context, attrs, 0);
     }
 
+    /**
+     * 通过构造函数构建当前Picker，主要分成以下几个步骤：
+     * 1. initAttrs 读取xml文件中的设置
+     * 2. setItemMaximumWidthText 设置当前显示的每一个Item的宽度，通过字符串设置，如2020可以表示为四个字符的字符串长
+     * 3. updateYear 更新数据，并且调用父类WheelPicker的方法将内容填充进去
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     */
     public YearPicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
@@ -42,9 +51,7 @@ public class YearPicker extends WheelPicker<Integer> {
     }
 
     private void initAttrs(Context context, AttributeSet attrs) {
-        if (attrs == null) {
-            return;
-        }
+        if (attrs == null) return;
 
         mSelectedYear = Calendar.getInstance().get(Calendar.YEAR);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.YearPicker);
@@ -56,30 +63,20 @@ public class YearPicker extends WheelPicker<Integer> {
 
     private void updateYear() {
         List<Integer> list = new ArrayList<>();
-        for (int i = mStartYear; i <= mEndYear; i++) {
-            list.add(i);
-        }
+        for (int i = mStartYear; i <= mEndYear; i++) list.add(i);
         setDataList(list);
     }
 
     public void setStartYear(int startYear) {
         mStartYear = startYear;
         updateYear();
-        if (mStartYear > mSelectedYear) {
-            setSelectedYear(mStartYear, false);
-        } else {
-            setSelectedYear(mSelectedYear, false);
-        }
+        setSelectedYear(Math.max(mStartYear, mSelectedYear), false);
     }
 
     public void setEndYear(int endYear) {
         mEndYear = endYear;
         updateYear();
-        if (mSelectedYear > endYear) {
-            setSelectedYear(mEndYear, false);
-        } else {
-            setSelectedYear(mSelectedYear, false);
-        }
+        setSelectedYear(Math.max(mEndYear, mSelectedYear), false);
     }
 
     public void setYear(int startYear, int endYear) {

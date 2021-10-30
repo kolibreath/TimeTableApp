@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.schedule
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.kolibreath.timetableapp.*
 
 class TimeTableFragment: BaseFragment(){
 
@@ -211,7 +212,8 @@ class TimeTableFragment: BaseFragment(){
                 // todo preference should use application context
             .apply {
                 setOnClickListener(wsvListener);
-                text = "第${Preference(this@TimeTableFragment.requireContext()).get(
+                text = "第${
+                    Preference(this@TimeTableFragment.requireContext()).get(
                 CUR_WEEK,-1)}周"
             }
         ibWeekSelect = rootView.findViewById<ImageButton>(R.id.ib_week_select)
