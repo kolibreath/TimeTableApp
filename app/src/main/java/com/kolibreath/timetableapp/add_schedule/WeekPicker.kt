@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View.OnClickListener
+import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -27,8 +28,8 @@ class WeekPicker(
     private val innerViewHeight = (contxt.getScreenWidth() - horMargin * 2) / 7 - innerViewMargin * 2
     private val innerViewWidth = innerViewHeight
 
-    private lateinit var onCancelClickListener: OnClickListener
-    private lateinit var onConfirmClickListener: OnClickListener
+    private var onCancelClickListener: OnClickListener = OnClickListener { }
+    private var onConfirmClickListener: OnClickListener =  OnClickListener { }
 
     // 当前设置中被选中的周 默认选中所有周数，点击则取消改周被选中
     var selectedWeeks = ArrayList((1..21).toList())
@@ -47,10 +48,7 @@ class WeekPicker(
         // 全选 单周 双周
         initButtons(this, arrayOf("全选", "单周", "双周"), Color.BLUE, weekListeners)
 
-        val actionListeners = arrayOf(
-            onCancelClickListener,
-            onConfirmClickListener
-        )
+        val actionListeners = arrayOf(onCancelClickListener, onConfirmClickListener)
 
         // 确定或取消
         initButtons(this, arrayOf("取消", "确定"), Color.BLACK, actionListeners)
@@ -58,11 +56,15 @@ class WeekPicker(
 
 
     internal fun setOnCancelClickListener(listener: OnClickListener) {
-        this.onCancelClickListener = listener
+        val linearLayout = getChildAt(3) as ViewGroup
+        val cancelButton = linearLayout.getChildAt(0)
+        cancelButton.setOnClickListener(listener)
     }
 
     internal fun setOnConfirmClickListener(listener: OnClickListener) {
-        this.onConfirmClickListener = listener
+        val linearLayout = getChildAt(3) as ViewGroup
+        val confirmButton = linearLayout.getChildAt(1)
+        confirmButton.setOnClickListener(listener)
     }
 
     // 初始化Title
@@ -110,14 +112,12 @@ class WeekPicker(
                 val curTextView = it as TextView
                 // Case#1 如果已经被选中
                 if (selectedWeeks.contains(i+1)) {
-                    curTextView.setBackgroundColor(Color.WHITE)
-                    curTextView.setTextColor(Color.BLACK)
+                    unselectView(curTextView)
                     selectedWeeks.remove(i+1)
                 }else {
                     // Case#2 如果没有选中
                     // TODO a background drawable is needed!
-                    curTextView.setBackgroundColor(Color.BLUE)
-                    curTextView.setTextColor(Color.WHITE)
+                    selectView(curTextView)
                     selectedWeeks.add(i+1)
                 }
             }
@@ -165,15 +165,29 @@ class WeekPicker(
     }
 
 
+    // 当前的View被选中的字体和颜色切换
+    private fun selectView(view: TextView) {
+        view.setBackgroundColor(Color.BLUE)
+        view.setTextColor(Color.WHITE)
+    }
+
+    // 当前View取消选中的字体和颜色切换
+    private fun unselectView(view: TextView) {
+        view.setBackgroundColor(Color.WHITE)
+        view.setTextColor(Color.BLACK)
+    }
+
 
     /**
      * 将当前选中的周的背景View设置颜色
      * @param weeks 当前选中的周
      */
     internal fun setSelectedWeeks(weeks: ArrayList<Int>) {
+        // 重置所有的View
+        weekTextViews.forEach { unselectView(it) }
         this.selectedWeeks = weeks
         weeks.forEach {
-            weekTextViews[it-1].setBackgroundColor(Color.BLUE)
+            selectView(weekTextViews[it-1])
         }
     }
 
@@ -188,7 +202,7 @@ class WeekPicker(
     // 设置双周
     internal fun setSelectEvenWeeks(){
         val evenWeeks = ArrayList<Int>()
-        for (i in 1.. 21 step 2) evenWeeks.add(i)
+        for (i in 2.. 21 step 2) evenWeeks.add(i)
         this.selectedWeeks = evenWeeks
         setSelectedWeeks(this.selectedWeeks)
     }

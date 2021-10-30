@@ -35,6 +35,7 @@ abstract class BaseBottomDialogFragment(
                 val lp = it.attributes.apply {
                     gravity = Gravity.BOTTOM
                     width = WindowManager.LayoutParams.MATCH_PARENT
+                    height = WindowManager.LayoutParams.WRAP_CONTENT
                     dimAmount = 0.35f
                     // todo rename animation
                     windowAnimations = R.style.DatePickerDialogAnim
