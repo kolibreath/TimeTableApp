@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.kolibreath.timetableapp.DateSelectView
+    <com.kolibreath.timetableapp.base.ui.DateSelectView
         android:id="@+id/view_date_select"
         android:layout_below="@+id/week_title_view"
         android:layout_width="match_parent"

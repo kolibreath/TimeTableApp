@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.base.ui
 
 import android.content.Context
 import android.graphics.Color
@@ -9,13 +9,20 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.kolibreath.timetableapp.dp2px
+import com.kolibreath.timetableapp.getScreenWidth
 import java.time.DayOfWeek
 import java.time.LocalDate
 
 /**
  * 显示具体日期对应到具体的星期上，内容间隔参数和WeekTitleView保持一致。
  * 日历View的设计参考小米日历，会显示本月日历（黑色字体）灰色日期（下月字体）
- * @see WeekTitleView
+ *
+ * 需求描述
+ * 1. 最开始默认选中当前日期（使用灰色标记）
+ * 2. 点击其他日期会使用背景颜色+白色字体标注这个TextView 并且确定这个日期为【选中日期】
+ * //todo
+ * 3. 滑动到下一个月会指向上个月的选中日期
  */
 @RequiresApi(Build.VERSION_CODES.O)
 class DateSelectView(
@@ -23,11 +30,11 @@ class DateSelectView(
     private val attributeSet: AttributeSet? = null
     ) : GridLayout(contxt)  {
 
-    private val TITLE_VIEW_MARGIN = contxt.dp2px(12)
+    private val titleViewMargin = contxt.dp2px(12)
     // WeekSelectView中间的每一个View的边距
-    private val INNER_MARGIN = contxt.dp2px(5).toInt()
-    private val INNER_TEXT_WIDTH = (contxt.getScreenWidth() - (TITLE_VIEW_MARGIN + INNER_MARGIN) * 2) / 7 - 2 * INNER_MARGIN
-    private val INNER_TEXT_HEIGHT = INNER_TEXT_WIDTH
+    private val innerMargin = contxt.dp2px(5).toInt()
+    private val innerTextWidth = (contxt.getScreenWidth() - (titleViewMargin + innerMargin) * 2) / 7 - 2 * innerMargin
+    private val innerTextHeight = innerTextWidth
 
     /**
      * 点击上个月的日期会滑动到上个月的日历，点击本月的日期会调出相应的点击事件
@@ -36,9 +43,24 @@ class DateSelectView(
     private val maxNumOfDates = 6*7
     private val tvDates = Array(maxNumOfDates){ TextView(contxt) }
 
+    private lateinit var tvCurDate: TextView
+    private var tvLastSelected: TextView? = null
+
+    private var onDateSelectedListener: OnDateSelectedListener? = null
+
     init {
         rowCount = 6
         columnCount = 7
+    }
+
+    private fun selectTextView(textView: TextView) {
+        textView.setTextColor(Color.WHITE)
+        textView.setBackgroundColor(Color.BLUE)
+    }
+
+    private fun unselectTextView(textView: TextView) {
+        textView.setTextColor(Color.BLACK)
+        textView.setBackgroundColor(Color.WHITE)
     }
 
     /**
@@ -84,9 +106,7 @@ class DateSelectView(
             if(this.last().toInt() <= 7) (this as ArrayList).removeLast()
             else this as ArrayList
         }
-        // todo 直接使用removeAll
-        temp.forEach { sundays.remove(it) }
-//        sundays.removeAll(temp)
+
         thisSundays.addAll(temp)
 
         // 剩余的归类到下个月
@@ -112,6 +132,24 @@ class DateSelectView(
             initTextView(nextMonthStrs[i], nextIndex, Color.GRAY, nextSundays.contains(nextMonthStrs[i]))
         }
 
+        // 找到当前日期并选中
+        val curDayTextView = tvDates[getCurDateIndex(month)].apply {
+            setBackgroundColor(Color.GRAY)
+        }
+        tvCurDate = curDayTextView
+        tvLastSelected = curDayTextView
+    }
+
+    /**
+     * 思路：
+     * 找到这个月的第一天是周几就可以推算出当前的日期
+     */
+    private fun getCurDateIndex(month: Int): Int {
+        //fixme joda-time
+        // 找到当前的日期
+        val now = LocalDate.now()
+        val firstDay = LocalDate.of(LocalDate.now().year, month, 1)
+        return firstDay.dayOfWeek.value + now.dayOfWeek.value - 1
     }
 
     /**
@@ -125,19 +163,45 @@ class DateSelectView(
         (textView.parent as ViewGroup?)?.let {
             removeView(textView)
         }
-        addView(textView, INNER_TEXT_WIDTH.toInt(), INNER_TEXT_HEIGHT.toInt())
+        addView(textView, innerTextWidth.toInt(), innerTextHeight.toInt())
         val params = textView.layoutParams as GridLayout.LayoutParams
 
-        if(needMargin) params.leftMargin = (INNER_MARGIN + TITLE_VIEW_MARGIN).toInt()
-        else params.leftMargin = INNER_MARGIN
-        params.rightMargin = INNER_MARGIN
-        params.bottomMargin = INNER_MARGIN
-        params.topMargin = INNER_MARGIN
+        if(needMargin) params.leftMargin = (innerMargin + titleViewMargin).toInt()
+        else params.leftMargin = innerMargin
+        params.rightMargin = innerMargin
+        params.bottomMargin = innerMargin
+        params.topMargin = innerMargin
 
         //todo define all color in color.xml
         textView.setTextColor(color)
         textView.gravity = Gravity.CENTER
         textView.text = dateText
+
+        // 绑定点击事件 并且需要满足以下要求
+        // 1. 当前日期不能被选中 但是仍然会响应点击事件
+        // 2. 选中的日期不能再点击取消
+        // 3. 选中的日期滑到其他月份继续被选中，从当前月份划走之后需要取消这个月份的日期选中
+        textView.setOnClickListener {view ->
+            view as TextView
+            onDateSelectedListener?.onDateSelected(view.text.toString().toInt())
+            if(view == tvCurDate) return@setOnClickListener
+            if(tvLastSelected != view){
+                selectTextView(view)
+                if(tvLastSelected != tvCurDate)
+                unselectTextView(tvLastSelected!!)
+            }
+            tvLastSelected = view
+        }
+    }
+
+    internal fun reset(){
+        if(tvLastSelected != null) unselectTextView(tvLastSelected!!)
+        tvLastSelected = null
+    }
+
+
+    internal fun setOnDateSelectedListener(onDateSelectedListener: OnDateSelectedListener){
+        this.onDateSelectedListener = onDateSelectedListener
     }
 
     private fun weekday2index(date: LocalDate): Int {
@@ -150,5 +214,12 @@ class DateSelectView(
             DayOfWeek.FRIDAY -> 5
             DayOfWeek.SATURDAY -> 6
         }
+    }
+
+    interface OnDateSelectedListener {
+        /**
+         * @param date 当前日期
+         */
+        fun onDateSelected(date: Int)
     }
 }

@@ -48,6 +48,10 @@ val schoolStartTime =
 val startMorning = arrayOf("06:00", "07:00")
 val endMorning = arrayOf("07:00", "08:00")
 
+// 定义晚上的时间段
+val startNight = arrayOf("")
+val endNight = arrayOf("")
+
 // 课程开始和结束的时间
 val startTimes = startMorning + arrayOf(
     "08:00", "09:00", "10:10", "11:10",
@@ -58,6 +62,9 @@ val  endTimes = endMorning + arrayOf(
     "08:50", "09:50", "11:00", "12:00",
     "14:20", "15:20", "16:30", "17:30",
     "19:20", "20:20", "21:20")
+
+// 每一天的实际课程数量
+val actualNumOfCourses = startTimes.size - startMorning.size - startNight.size
 
 // 一节课的时间
 val courseInterval = 50f

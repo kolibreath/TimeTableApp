@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-//TODO remove the use of Date SimpleDateFormat and Calendar
+//fixme remove the use of Date SimpleDateFormat and Calendar use joda-time instead
 /**
  * 获取开学时间对应的年份 月份 和具体日期
  * @see schoolStartTime
@@ -31,7 +31,7 @@ fun getCurrDay():String{
  * 根据当前时间获取当前的星期，如Monday Tuesday
  * @return 当前的日期所对应的时间
  */
-fun num2Weekday(): String {
+fun getCurWeekdayEn(): String {
     return when(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)){
         Calendar.MONDAY -> "Monday"
         Calendar.TUESDAY -> "Tuesday"
@@ -40,6 +40,19 @@ fun num2Weekday(): String {
         Calendar.FRIDAY -> "Friday"
         Calendar.SATURDAY -> "Saturday"
         Calendar.SUNDAY -> "Sunday"
+        else -> {""}
+    }
+}
+
+fun getCurWeekdayCn(): String {
+    return when(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)){
+        Calendar.MONDAY -> "周一"
+        Calendar.TUESDAY -> "周二"
+        Calendar.WEDNESDAY -> "周三"
+        Calendar.THURSDAY -> "周四"
+        Calendar.FRIDAY -> "周五"
+        Calendar.SATURDAY -> "周六"
+        Calendar.SUNDAY -> "周日"
         else -> {""}
     }
 }
@@ -88,7 +101,6 @@ fun num2MonthInCn(number: Int): String {
  * 第一周 9/14 9/15 9/16 9/17 9/18 9/19 9/20
  * @param weekNum 当前的周数 第一周为 1
  */
-//TODO 这个方法可能存在适配问题
 @RequiresApi(Build.VERSION_CODES.O)
 fun getWholeWeek4CurWeekNum(weekNum: Int): ArrayList<String> {
     val tempList = decomposeTime(schoolStartTime)
