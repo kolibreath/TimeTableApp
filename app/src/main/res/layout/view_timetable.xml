@@ -17,7 +17,7 @@
 
 
 
-    <com.kolibreath.timetableapp.schedule.TimeTableLayout
+    <com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTableLayout
         android:id="@+id/layout_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:layout_marginTop="-1dp"
             android:background="@color/white" />
 
-        <com.kolibreath.timetableapp.schedule.TableContent
+        <com.kolibreath.timetableapp.schedule.weeklyschedule.TableContent
             android:id="@+id/timetable_content"
             android:layout_width="455dp"
             android:layout_height="798dp"
@@ -59,21 +59,21 @@
             android:layout_marginLeft="49dp"
             android:layout_marginTop="41dp" />
 
-        <com.kolibreath.timetableapp.schedule.WeekLayout
+        <com.kolibreath.timetableapp.schedule.weeklyschedule.WeekLayout
             android:id="@+id/week_layout"
             android:layout_width="455dp"
             android:layout_height="41dp"
             android:layout_below="@id/divider"
             android:layout_marginLeft="49dp" />
 
-        <com.kolibreath.timetableapp.schedule.CourseTimeLayout
+        <com.kolibreath.timetableapp.schedule.weeklyschedule.CourseTimeLayout
             android:id="@+id/course_time_layout"
             android:layout_width="49dp"
             android:layout_height="798dp"
             android:layout_below="@id/divider"
             android:layout_marginTop="41dp" />
 
-    </com.kolibreath.timetableapp.schedule.TimeTableLayout>
+    </com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTableLayout>
 
 
 </merge>

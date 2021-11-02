@@ -1,9 +1,9 @@
-package com.kolibreath.timetableapp.add_schedule.adapter
+package com.kolibreath.timetableapp.schedule.addschedule.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.kolibreath.timetableapp.add_schedule.AddScheduleFragment
+import com.kolibreath.timetableapp.schedule.addschedule.AddScheduleFragment
 
 class AddScheduleViewPagerAdapter(
     private val fragments: ArrayList<AddScheduleFragment>,

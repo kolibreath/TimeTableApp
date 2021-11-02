@@ -47,6 +47,7 @@ class DateSelectView(
     private var tvLastSelected: TextView? = null
 
     private var onDateSelectedListener: OnDateSelectedListener? = null
+    private var month = 0
 
     init {
         rowCount = 6
@@ -67,8 +68,10 @@ class DateSelectView(
      * 根据指定的月份加载视图
      * @param month 表示月份的数字 1 表示1月
      */
-    fun loadView(month: Int) {
-
+    fun loadView(month: Int, preSelectedDate: Int) {
+        this.month = month
+        // 刷新所有的View为初始状态
+        tvDates.forEach { unselectTextView(it) }
         //todo review common practices of LocalDate
         val firstDay = LocalDate.of(LocalDate.now().year, month, 1)
         // 找到这个月的第一天
@@ -132,12 +135,30 @@ class DateSelectView(
             initTextView(nextMonthStrs[i], nextIndex, Color.GRAY, nextSundays.contains(nextMonthStrs[i]))
         }
 
-        // 找到当前日期并选中
+        // 找到当前日期并设置背景色
         val curDayTextView = tvDates[getCurDateIndex(month)].apply {
             setBackgroundColor(Color.GRAY)
         }
         tvCurDate = curDayTextView
         tvLastSelected = curDayTextView
+
+        // 找到上月的选中日期并且设置背景色, 当为-1时不做任何操作
+        if (preSelectedDate != -1) {
+            tvDates[getPreSelectedIndex(month, preSelectedDate)]
+                .apply {
+                    selectTextView(this)
+                    tvLastSelected = this
+                }
+        }
+    }
+    /**
+     * 根据上个月传入的日期确定在当前月份中对应的TextView的index
+     * @param month 当前月份
+     * @param preSelectedDate 上个月被选中的Date
+     */
+    private fun getPreSelectedIndex(month: Int, preSelectedDate: Int): Int {
+        val firstDay = LocalDate.of(LocalDate.now().year, month, 1)
+        return firstDay.dayOfWeek.value + preSelectedDate - 1
     }
 
     /**
@@ -157,7 +178,12 @@ class DateSelectView(
      * @param dateText TextView应该显示的文字 上个月的文字使用灰色表示，本月使用黑色表示
      * @param i 当前的TextView在array中的位置
      */
-    private fun initTextView(dateText: String, i: Int, color: Int, needMargin: Boolean = false) {
+    private fun initTextView(
+        dateText: String,
+        i: Int,
+        color: Int,
+        needMargin: Boolean = false
+    ) {
         val textView = tvDates[i]
         // 规避ViewPager因为缓存问题造成的错误
         (textView.parent as ViewGroup?)?.let {
@@ -183,7 +209,7 @@ class DateSelectView(
         // 3. 选中的日期滑到其他月份继续被选中，从当前月份划走之后需要取消这个月份的日期选中
         textView.setOnClickListener {view ->
             view as TextView
-            onDateSelectedListener?.onDateSelected(view.text.toString().toInt())
+            onDateSelectedListener?.onDateSelected(view.text.toString().toInt(), this.month)
             if(view == tvCurDate) return@setOnClickListener
             if(tvLastSelected != view){
                 selectTextView(view)
@@ -192,11 +218,6 @@ class DateSelectView(
             }
             tvLastSelected = view
         }
-    }
-
-    internal fun reset(){
-        if(tvLastSelected != null) unselectTextView(tvLastSelected!!)
-        tvLastSelected = null
     }
 
 
@@ -220,6 +241,6 @@ class DateSelectView(
         /**
          * @param date 当前日期
          */
-        fun onDateSelected(date: Int)
+        fun onDateSelected(date: Int, month: Int)
     }
 }

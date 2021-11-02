@@ -68,3 +68,5 @@ val actualNumOfCourses = startTimes.size - startMorning.size - startNight.size
 
 // 一节课的时间
 val courseInterval = 50f
+
+const val TAG_TIME_TIME_FRAGMENT = "TimeTableFragment"

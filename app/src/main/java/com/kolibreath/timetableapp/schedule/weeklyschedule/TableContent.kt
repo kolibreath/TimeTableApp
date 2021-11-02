@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.schedule
+package com.kolibreath.timetableapp.schedule.weeklyschedule
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.FrameLayout
@@ -58,8 +57,6 @@ class TableContent(
 
 
     override fun onDraw(canvas: Canvas) {
-        Log.d("TableContent", "onDraw run")
-
         val numOfCourses = startTimes.size
         // 将背景涂成白色打底
         paint.color = Color.WHITE
@@ -77,7 +74,7 @@ class TableContent(
             path.lineTo(WEEK_DAY_WIDTH * (i + 1), COURSE_HEIGHT * numOfCourses)
         }
 
-        paint.color = Color.GRAY
+        paint.color = resources.getColor(R.color.grey)
         paint.strokeWidth = contxt.dp2px(1)
         paint.style = Paint.Style.STROKE
         canvas.drawPath(path, paint)

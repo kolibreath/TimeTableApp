@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.add_schedule
+package com.kolibreath.timetableapp.schedule.addschedule
 
 import android.view.View
 import com.kolibreath.timetableapp.R

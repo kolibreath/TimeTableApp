@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.add_schedule
+package com.kolibreath.timetableapp.schedule.addschedule
 
 import android.content.Context
 import android.graphics.Color

@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.schedule
+package com.kolibreath.timetableapp.schedule.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.WeeklyScheduleDetail
+import com.kolibreath.timetableapp.schedule.WeeklyScheduleDetailAdapter
 
 class ScheduleDetailActivity: AppCompatActivity() {
 

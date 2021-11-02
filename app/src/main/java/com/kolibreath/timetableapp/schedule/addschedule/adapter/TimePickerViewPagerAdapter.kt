@@ -1,9 +1,9 @@
-package com.kolibreath.timetableapp.add_schedule.adapter
+package com.kolibreath.timetableapp.schedule.addschedule.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.kolibreath.timetableapp.add_schedule.TimePickerFragment
+import com.kolibreath.timetableapp.schedule.addschedule.TimePickerFragment
 
 /**
  * Viewpager 在自定义日程中控制以节数或者是以具体时间为单位选择

@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.schedule
+package com.kolibreath.timetableapp.schedule.weeklyschedule
 
 import android.content.Context
 import android.graphics.Canvas

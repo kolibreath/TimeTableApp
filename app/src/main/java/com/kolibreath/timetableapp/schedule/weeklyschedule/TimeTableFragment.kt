@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.schedule
+package com.kolibreath.timetableapp.schedule.weeklyschedule
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,12 +28,11 @@ class TimeTableFragment: BaseFragment(){
     private var fabLocate: FloatingActionButton? = null
     private var courseTimeLayout: CourseTimeLayout? = null
 
-    // todo remove later
     private var courses = ArrayList<Course>()
     private var courseTimeList = ArrayList<CourseTime>()
 
 
-    //todo 需要改成从数据库中读取
+    //todo read from database
     private fun loadCourseTime() {
         // course1 courseTime 为 1 and 4
         val course1 = Course(
