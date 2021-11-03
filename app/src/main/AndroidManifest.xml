@@ -23,8 +23,9 @@
         <activity android:name=".schedule.detail.ScheduleDetailActivity">
         </activity>
 
-        <activity android:name="com.kolibreath.timetableapp.schedule.addschedule.AddScheduleActivity">
-
+        <activity
+            android:name="com.kolibreath.timetableapp.schedule.addschedule.AddScheduleActivity"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
     </application>

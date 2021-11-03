@@ -61,7 +61,7 @@ fun getCurWeekdayCn(): String {
  * 根据数字获取当前的星期
  * @param number 从0开始
  */
-fun num2Weekday(number: Int): String {
+fun num2WeekdayEn(number: Int): String {
     return when(number){
         0 -> "Monday"
         1 -> "Tuesday"
@@ -70,6 +70,19 @@ fun num2Weekday(number: Int): String {
         4 -> "Friday"
         5 -> "Saturday"
         6 -> "Sunday"
+        else -> {""}
+    }
+}
+
+fun num2WeekdayCn(number: Int): String {
+    return when(number){
+        0 -> "周一"
+        1 -> "周二"
+        2 -> "周三"
+        3 -> "周四"
+        4 -> "周五"
+        5 -> "周六"
+        6 -> "周日"
         else -> {""}
     }
 }

@@ -1,16 +1,19 @@
 package com.kolibreath.timetableapp.schedule.weeklyschedule
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.os.Bundle
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.Scroller
 import com.kolibreath.timetableapp.*
+import com.kolibreath.timetableapp.schedule.detail.ScheduleDetailActivity
 
 /**
  * 周视图主要内容部分，
@@ -94,8 +97,10 @@ class TableContent(
 
         for (curCourseTime in courseTimes) {
             if (drawnCourseTimeList.contains(curCourseTime)) continue
+            // 找出重叠（课程有交集）的课程
+            // 如果当前课程和其他课程时间没有重叠，返回一个只包含自身的courseTime List
             val overlapCourses = getOverlapCourses(curCourseTime)
-            // 找出完全重叠的课程 完全重叠的课程只绘制一次
+            // 从重叠的课程中，找出完全重叠的课程 完全重叠的课程只绘制一次
             val cpOverlapCourses = getCpOverlapCourses(overlapCourses)
             if (cpOverlapCourses.isNotEmpty()) {
                 // 1 2 3 4 中 1 2 完全重叠 移除 1 2 再添加 1
@@ -106,7 +111,8 @@ class TableContent(
 
             // 绘制这些重复的courseTime
             for (overlapCourse in overlapCourses) {
-                addCourseView(overlapCourse, cpOverlapCourses.contains(overlapCourse))
+                val tipOn = overlapCourses.contains(overlapCourse) && overlapCourses.size != 1
+                addCourseView(overlapCourse, tipOn)
             }
             drawnCourseTimeList.addAll(overlapCourses)
         }
@@ -182,7 +188,8 @@ class TableContent(
     }
 
     /**
-     * 添加单个View
+     * 添加单个View，并且设置CourseView的点击事件，通过点击CourseView可以转到详情页面
+     * 查看被覆盖的View
      */
     private fun addCourseView(courseTime: CourseTime, tipOn: Boolean = false) {
         val courseView = CourseView(contxt)
@@ -194,6 +201,16 @@ class TableContent(
             contxt.dp2px(10).toInt(), contxt.dp2px(8).toInt(),
             contxt.dp2px(10).toInt(), contxt.dp2px(8).toInt()
         )
+
+        // 点击事件 传递参数是List 包括当前的CourseTime和可能重叠的courseTime
+        courseView.setOnClickListener {
+            // fixme kotlin ArrayList List
+            val details = ArrayList(getOverlapCourses(courseTime).map { courseTime2Detail(courseTime) })
+            val bundle = Bundle().apply { putSerializable("details", details) }
+            val intent = Intent(this@TableContent.contxt, ScheduleDetailActivity::class.java)
+            intent.putExtra("detail_bundle", bundle)
+            this@TableContent.contxt.startActivity(intent)
+        }
 
         var during = 0f // 这一节课经过的时间所对应的一节课的比例
         var topMargin:Float = startMorning.size * COURSE_HEIGHT      // 这一节课相对于顶部的margin
@@ -248,12 +265,36 @@ class TableContent(
         courseView.text = ellipseText(courseTime, curWeek)
         courseView.gravity = Gravity.CENTER
 
-        val color = if (curWeek) getCourseByTime(courseTime, courses)!!.colorId else contxt.resources.getColor(
+        val color = if (curWeek) getCourseByTime(courseTime)!!.colorId else contxt.resources.getColor(
             R.color.grey
         )
         courseView.setBackgroundColor(color)
 
         addView(courseView, courseParams)
+    }
+
+    private fun courseTime2Detail(courseTime: CourseTime): WeeklyScheduleDetail {
+        val course = getCourseByTime(courseTime)
+        // todo 先默认都是课程类型
+        val times = courseTime.courseTime!!.split(",").map { it.toInt() }
+        val startTime= startTimes[times[0] - 1]
+        val endTime = endTimes[times[1] - 1]
+        val timeStr = "${num2WeekdayCn(courseTime.dayOfWeek)} $startTime~$endTime (第${times[0]}-${times[1]}节)"
+
+        val weeks = courseTime.weeks.split(",")
+        val weekStr = "${weeks[0]}-${weeks[1]}周"
+
+        return WeeklyScheduleDetail(
+            detailType = 0,
+            name = course!!.name,
+            location = courseTime.place,
+            // 课程：周数 时间段 (节数)：如 周一 8:00~9:00 (第1-2节)
+            // 日程: 周数 日期 时间段   如 周一 5月29日 9:00~9:40
+            time = timeStr,
+            // todo simple implementation of weeks
+            week = weekStr,
+            teacher = courseTime.teacher
+        )
     }
 
     // 将使用字符串表示的时间,如8:00 转换成对应的时间（分钟）8*60 + 0
@@ -351,7 +392,7 @@ class TableContent(
     }
 
     // 找到CourseTime对应的Course
-    private fun getCourseByTime(courseTime: CourseTime, courses: List<Course>): Course? {
+    private fun getCourseByTime(courseTime: CourseTime): Course? {
         for (course in courses) {
             if (course.id == courseTime.courseId) return course
         }
@@ -359,7 +400,7 @@ class TableContent(
     }
 
     private fun ellipseText(courseTime: CourseTime, curWeek: Boolean): String {
-        val course = getCourseByTime(courseTime, courses)!!
+        val course = getCourseByTime(courseTime)!!
         val ellipseCourseName =
             if (curWeek) {
                 if (course.name.length > 8) "${course.name.substring(0, 7)}..."

@@ -10,16 +10,6 @@ import com.kolibreath.timetableapp.R
 
 class AddScheduleFragment: Fragment() {
 
-    companion object {
-        fun newInstance(string: String): AddScheduleFragment {
-            val bundle = Bundle()
-            bundle.putString("label", string)
-            val fragment = AddScheduleFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

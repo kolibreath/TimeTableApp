@@ -10,10 +10,15 @@
 
     <!--   fragment_add_course-->
     <!--   第一个view距离top的dp-->
-    <dimen name="fac_margin_top">20dp</dimen>
+    <dimen name="fac_margin_top">32dp</dimen>
     <!--  View距离左边的距离  -->
-    <dimen name="fac_item_margin_left">20dp</dimen>
+    <dimen name="fac_item_margin_left">32dp</dimen>
     <!--  垂直方向View和View之间的间隔  -->
-    <dimen name="fac_ver_item_margin_top">20dp</dimen>
-
+    <dimen name="fac_ver_item_margin_top">30dp</dimen>
+    <!-- 输入框的高度   -->
+    <dimen name="fac_edt_height">40dp</dimen>
+    <!-- 输入框到左边TextView的间隔   -->
+    <dimen name="fac_edt_left_margin">32dp</dimen>
+    <!-- 输入框到Parent右边缘的间隔   -->
+    <dimen name="fac_edt_right_margin">32dp</dimen>
 </resources>

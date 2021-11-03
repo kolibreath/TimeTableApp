@@ -14,29 +14,13 @@ class ScheduleDetailActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule_detail)
 
-
-        // 构建测试用例
-        val course = WeeklyScheduleDetail(
-            detailType = 0,
-            name = "摆烂",
-            location = "N636",
-            time = "周一 8:00~9:00 (第1-2节)",
-            week = "1~18周",
-            teacher = "郭京蕾"
-        )
-
-        val course2 = WeeklyScheduleDetail(
-            detailType = 1,
-            location = "N517",
-            time = "周一 5月29日 9:00~9:40",
-            type = "运动",
-            week = "18周",
-            description = "这是一个简单的日程"
-        )
+        // 从intent中解析数据
+        val bundle = intent.extras!!.getBundle("detail_bundle")
+        val details = bundle!!.getSerializable("details") as ArrayList<WeeklyScheduleDetail>
 
         val rvDetails = findViewById<RecyclerView>(R.id.rv_details)
         val layoutManager = LinearLayoutManager(this)
-        val adapter = WeeklyScheduleDetailAdapter(this, arrayListOf(course, course2))
+        val adapter = WeeklyScheduleDetailAdapter(this, details)
         rvDetails.layoutManager = layoutManager
         rvDetails.adapter = adapter
     }

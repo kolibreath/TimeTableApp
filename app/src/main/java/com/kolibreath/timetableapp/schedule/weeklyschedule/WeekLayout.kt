@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.getCurrWeekNum
 import com.kolibreath.timetableapp.getWholeWeek4CurWeekNum
-import com.kolibreath.timetableapp.num2Weekday
+import com.kolibreath.timetableapp.num2WeekdayEn
 
 // 课程表顶部显示当前的时间的View
 class WeekLayout(
@@ -29,7 +29,7 @@ class WeekLayout(
             val tvWeekday = view.findViewById(R.id.tv_weekday) as TextView
             val tvDate = view.findViewById(R.id.tv_date) as TextView
 
-            tvWeekday.text = num2Weekday(i)
+            tvWeekday.text = num2WeekdayEn(i)
             tvDate.text = list[i]
 
             addView(view)

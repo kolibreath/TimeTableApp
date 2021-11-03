@@ -1,13 +1,19 @@
 package com.kolibreath.timetableapp.schedule.weeklyschedule
 
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kolibreath.timetableapp.*
+import com.kolibreath.timetableapp.schedule.addschedule.AddScheduleActivity
 
 class TimeTableFragment: BaseFragment(){
 
@@ -25,7 +31,7 @@ class TimeTableFragment: BaseFragment(){
     private var ibWeekSelect: ImageButton? = null
     private var ibSchedule: ImageButton? = null
     private var weekSelectView: WeekSelectView? = null
-    private var fabLocate: FloatingActionButton? = null
+    private lateinit var fabUtils: FloatingActionButton
     private var courseTimeLayout: CourseTimeLayout? = null
 
     private var courses = ArrayList<Course>()
@@ -229,15 +235,103 @@ class TimeTableFragment: BaseFragment(){
         }
 
         // 将CourseTimeLayout 和 TableContent定位到开始课程的位置
-        courseTimeLayout = timeTable!!.findViewById<CourseTimeLayout>(R.id.course_time_layout)
+        courseTimeLayout = timeTable!!.findViewById(R.id.course_time_layout)
         locateTableContent()
-        fabLocate = rootView.findViewById<FloatingActionButton>(R.id.fab_locate).apply {
-            setOnClickListener{
-                locateTableContent()
+
+        fabUtils = rootView.findViewById(R.id.fab_utils)
+
+        // 单位:dp
+        val initMargin = 20
+        // 动画移动到的相对开始的位置
+        val relativePos = 70
+
+        fun paramsFactory(): RelativeLayout.LayoutParams {
+            return RelativeLayout.LayoutParams(
+                fabUtils.layoutParams.width,
+                fabUtils.layoutParams.height
+            ).apply {
+                addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+                rightMargin = this@TimeTableFragment.requireContext().dp2px(initMargin).toInt()
+                bottomMargin = this@TimeTableFragment.requireContext().dp2px(initMargin).toInt()
             }
         }
 
+        val fabLocate = FloatingActionButton(this.requireContext())
+            .apply {
+                visibility = View.INVISIBLE
+                setOnClickListener {  locateTableContent() }
+            }
+        val fabAddSchedule = FloatingActionButton(this.requireContext())
+            .apply {
+                visibility = View.INVISIBLE
+                setOnClickListener {
+                    val intent = Intent(this@TimeTableFragment.requireActivity(), AddScheduleActivity::class.java)
+                    this@TimeTableFragment.requireActivity().startActivity(intent)
+                }
+            }
+
+        rootView as ViewGroup
+        rootView.addView(fabLocate, paramsFactory())
+        rootView.addView(fabAddSchedule, paramsFactory())
+
+        // 点击fabUtils 弹出另外两个小控件
+        fabUtils.apply {
+            setOnClickListener{
+                if(fabLocate.visibility == View.INVISIBLE && fabAddSchedule.visibility == View.INVISIBLE) {
+                    fabLocate.visibility = View.VISIBLE
+                    fabAddSchedule.visibility = View.VISIBLE
+                    move(fab1 = fabLocate, fab2 = fabAddSchedule, - requireContext().dp2px(relativePos))
+
+                    Log.d("TimeTable", "${fabLocate.right} ${fabUtils.right}")
+                }else {
+                    move(fab1 = fabLocate, fab2 = fabAddSchedule, requireContext().dp2px(relativePos))
+                    this.postDelayed( {
+                        fabLocate.visibility = View.INVISIBLE
+                        fabAddSchedule.visibility = View.INVISIBLE
+                    }, 600)
+                }
+
+            }
+        }
     }
+
+    private fun move(
+        fab1: FloatingActionButton,
+        fab2: FloatingActionButton,
+        relativePos: Float)
+    {
+        AnimatorSet().apply {
+            val translationX = transX(fab1, relativePos)
+            val translationY = transY(fab2, relativePos)
+            play(translationX).with(translationY)
+        }.start()
+    }
+
+    private fun transX(view: View, relativePos: Float): ValueAnimator{
+        val left = view.left
+        val right = view.right
+        return ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 500
+            addUpdateListener {
+                val curValue = ((it.animatedValue as Float) * relativePos).toInt()
+                view.layout(left + curValue, view.top, right + curValue, view.bottom)
+            }
+        }
+    }
+
+    private fun transY(view: View, relativePos: Float): ValueAnimator{
+        val top = view.top
+        val bottom = view.bottom
+        return ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 500
+            addUpdateListener {
+                val curValue = ((it.animatedValue as Float) * relativePos).toInt()
+                view.layout(view.left, top + curValue , view.right, bottom + curValue)
+            }
+        }
+    }
+
 
     private fun locateTableContent(){
         courseTimeLayout!!.scrollTo(0, (startMorning.size * COURSE_HEIGHT).toInt())

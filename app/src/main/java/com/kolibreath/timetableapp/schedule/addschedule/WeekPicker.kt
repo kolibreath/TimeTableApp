@@ -3,6 +3,7 @@ package com.kolibreath.timetableapp.schedule.addschedule
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.View.OnClickListener
 import android.view.ViewGroup
@@ -46,12 +47,29 @@ class WeekPicker(
         )
 
         // 全选 单周 双周
-        initButtons(this, arrayOf("全选", "单周", "双周"), Color.BLUE, weekListeners)
+        val layoutParams1 = LayoutParams(
+            LayoutParams.WRAP_CONTENT,
+            LayoutParams.WRAP_CONTENT
+        )
+        layoutParams1.topMargin = contxt.dp2px(10).toInt()
+        layoutParams1.bottomMargin  = contxt.dp2px(10).toInt()
+        initButtons(
+            rootView = this,
+            layoutParams = layoutParams1,
+            texts = arrayOf("全选", "单周", "双周"),
+            color = Color.BLUE,
+            listeners = weekListeners
+        )
 
         val actionListeners = arrayOf(onCancelClickListener, onConfirmClickListener)
 
         // 确定或取消
-        initButtons(this, arrayOf("取消", "确定"), Color.BLACK, actionListeners)
+        initButtons(
+            rootView = this,
+            layoutParams = layoutParams1,
+            texts = arrayOf("取消", "确定"),
+            color = Color.BLACK,
+            listeners = actionListeners)
     }
 
 
@@ -71,12 +89,16 @@ class WeekPicker(
     private fun initTitleTextView(rootView: LinearLayout){
         val title = TextView(contxt)
         title.text = "选择周数"
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
         title.gravity = Gravity.CENTER
         title.setTextColor(Color.BLACK)
         val params = LayoutParams(
             LayoutParams.WRAP_CONTENT,
             LayoutParams.WRAP_CONTENT
         )
+        params.topMargin = contxt.dp2px(20).toInt()
+        params.bottomMargin = contxt.dp2px(20).toInt()
+
         params.gravity = Gravity.CENTER_HORIZONTAL
         rootView.addView(title, params)
     }
@@ -131,16 +153,14 @@ class WeekPicker(
 
     private fun initButtons(
         rootView: LinearLayout,
-        texts: Array<String>, color: Int,
+        layoutParams: LayoutParams,
+        texts: Array<String>,
+        color: Int,
         listeners: Array<OnClickListener>
     ) {
         val linearLayout = LinearLayout(contxt).apply {
             orientation = HORIZONTAL
         }
-        val linearLayoutParams = LayoutParams(
-            LayoutParams.MATCH_PARENT,
-            LayoutParams.WRAP_CONTENT
-        )
 
         fun setUpTextViews(): ArrayList<TextView> {
             val arrayList = ArrayList<TextView>()
@@ -161,7 +181,7 @@ class WeekPicker(
         // 添加三个按钮
         setUpTextViews().forEach { linearLayout.addView(it, textParams)}
 
-        rootView.addView(linearLayout, linearLayoutParams)
+        rootView.addView(linearLayout, layoutParams)
     }
 
 

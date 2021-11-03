@@ -1,5 +1,6 @@
 package com.kolibreath.timetableapp
 
+import java.io.Serializable
 import java.util.*
 
 // 开学时间 2021/9/14
@@ -21,7 +22,7 @@ data class CourseTime(
     val place: String = "",
     val teacher: String = "",
     val dayOfWeek: Int, // 0 表示周一 7 表示周日
-    var courseTime: String? = "", // 比如：1-2，表示第一节到第二节（和 customStartTime 二选一）
+    var courseTime: String? = "", // 比如：1,2，表示第一节到第二节（和 customStartTime 二选一）
     val customStartTime: Date? = null, // 自定义开始和结束时间
     val customEndTime: Date? = null, // 自定义结束时间
     val weeks:String = "", // 1,2,3,4,5 那几周开始上课
@@ -150,7 +151,7 @@ data class WeeklyScheduleDetail(
     val type: String = "", // 日程的类型 如 运动 上课 ....
     val description: String = "",
     val note: String = "" // 自定义添加的备注信息
-)
+): Serializable
 
 //TODO 后续时间表Id
 

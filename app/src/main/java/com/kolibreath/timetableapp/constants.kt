@@ -70,3 +70,5 @@ val actualNumOfCourses = startTimes.size - startMorning.size - startNight.size
 val courseInterval = 50f
 
 const val TAG_TIME_TIME_FRAGMENT = "TimeTableFragment"
+const val TAG_WEEK_PICKER_DIALOG_FRAGMENT = "WeekPickerDialogFragment"
+const val TAG_TIME_PICKER_DIALOG_FRAGMENT = "TimePickerDialogFragment"

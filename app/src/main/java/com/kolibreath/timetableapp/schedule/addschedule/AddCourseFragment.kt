@@ -9,6 +9,8 @@ import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.kolibreath.timetableapp.R
+import com.kolibreath.timetableapp.TAG_TIME_PICKER_DIALOG_FRAGMENT
+import com.kolibreath.timetableapp.TAG_WEEK_PICKER_DIALOG_FRAGMENT
 
 class AddCourseFragment: Fragment() {
 
@@ -31,7 +33,7 @@ class AddCourseFragment: Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_add_course, container, false)
         initViews(rootView)
-        return view
+        return rootView
     }
 
     // 实例化这些View
@@ -44,32 +46,30 @@ class AddCourseFragment: Fragment() {
         edtPriority = rootView.findViewById(R.id.edt_priority)
         edtNote = rootView.findViewById(R.id.edt_note)
 
-        edtWeekNum = rootView.findViewById(R.id.edt_week_num)
+        edtWeekNum = rootView.findViewById<EditText>(R.id.edt_week_num).apply{
+            focusable = EditText.NOT_FOCUSABLE
+            isFocusableInTouchMode = false
+            setOnClickListener {
+                val weekPickerDialogFragment =
+                    WeekPickerDialogFragment(R.layout.dialog_fragment_week_picker)
+                weekPickerDialogFragment.show(
+                    this@AddCourseFragment.requireActivity().supportFragmentManager,
+                    TAG_WEEK_PICKER_DIALOG_FRAGMENT
+                )
+            }
+        }
+
         edtTime = rootView.findViewById<EditText>(R.id.edt_time).apply {
             focusable = EditText.NOT_FOCUSABLE
             isFocusableInTouchMode = false
-//            setOnClickListener {
-//                val dateTv = findViewById<TextView>(R.id.tv_date)
-//                val datePicker: DatePicker = findViewById(R.id.datePicker)
-//                val button: Button = findViewById(R.id.button)
-//                button.setOnClickListener {
-//                    val datePickerDialogFragment =
-//                        DatePickerDialogFragment()
-//                    val listener =
-//                        DatePickerDialogFragment.OnDateChooseListener { year, month, day ->
-//                            Toast.makeText(
-//                                applicationContext,
-//                                "$year-$month-$day",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                    datePickerDialogFragment.setOnDateChooseListener(listener)
-//                    datePickerDialogFragment.show(supportFragmentManager, "")
-//                }
-//                datePicker.setOnDateSelectedListener { year, month, day ->
-//                    dateTv.text = "$year-$month-$day"
-//                }
-//            }
+            setOnClickListener {
+                val timePickerDialogFragment =
+                    TimePickerDialogFragment(R.layout.dialog_fragment_time_picker)
+                timePickerDialogFragment.show(
+                    this@AddCourseFragment.requireActivity().supportFragmentManager,
+                    TAG_TIME_PICKER_DIALOG_FRAGMENT
+                )
+            }
         }
 
     }
