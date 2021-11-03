@@ -48,7 +48,7 @@ class WeekPicker(
 
         // 全选 单周 双周
         val layoutParams1 = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
+            LayoutParams.MATCH_PARENT,
             LayoutParams.WRAP_CONTENT
         )
         layoutParams1.topMargin = contxt.dp2px(10).toInt()
@@ -89,7 +89,7 @@ class WeekPicker(
     private fun initTitleTextView(rootView: LinearLayout){
         val title = TextView(contxt)
         title.text = "选择周数"
-        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         title.gravity = Gravity.CENTER
         title.setTextColor(Color.BLACK)
         val params = LayoutParams(

@@ -26,6 +26,9 @@ class WeekPickerDialogFragment(
         weekPicker.setOnConfirmClickListener(onConfirmClickListener)
     }
 
+    /**
+     * @param onWeeksSelectedListener 传回点击周数组成的ArrayList
+     */
     fun setOnWeeksSelectedListener(onWeeksSelectedListener: OnWeeksSelectedListener) {
         this.onWeeksSelectedListener = onWeeksSelectedListener
     }
