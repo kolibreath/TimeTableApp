@@ -1,15 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<!--添加课程的View-->
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:paddingTop="100dp"
-        />
+        android:id="@+id/tv_add_course_description"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/fac_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/description"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/edt_add_schedule_description"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/fac_edt_left_margin"
+        android:layout_marginRight="@dimen/fac_edt_right_margin"
+        android:background="@drawable/round_text_background"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_add_course_description"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/tv_add_course_description"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_course_description"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/schedule_type"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edt_type"
+        android:layout_width="0dp"
+        android:textSize="16sp"
+        android:layout_height="@dimen/fac_edt_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/fac_edt_left_margin"
+        android:layout_marginRight="@dimen/fac_edt_right_margin"
+        android:background="@drawable/round_text_background"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_type"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_start_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/start_time"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edt_start_time"
+        android:background="@drawable/round_text_background"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_start_time"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="@dimen/fac_edt_left_margin"
+        android:layout_marginRight="@dimen/fac_edt_right_margin"
+        android:layout_width="0dp"
+        android:textSize="16sp"
+        android:layout_height="@dimen/fac_edt_height"/>
+
+
+    <TextView
+        android:id="@+id/tv_teacher"
+        app:layout_constraintTop_toBottomOf="@id/tv_start_time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/end_time"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edt_end_time"
+        android:background="@drawable/round_text_background"
+        android:layout_width="0dp"
+        android:textSize="16sp"
+        android:layout_height="@dimen/fac_edt_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/fac_edt_left_margin"
+        android:layout_marginRight="@dimen/fac_edt_right_margin"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_teacher"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_repeat"
+        app:layout_constraintTop_toBottomOf="@id/tv_teacher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:text="@string/repeat"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edt_repeat"
+        android:background="@drawable/round_text_background"
+        android:layout_width="0dp"
+        android:textSize="16sp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:layout_marginLeft="@dimen/fac_edt_left_margin"
+        android:layout_marginRight="@dimen/fac_edt_right_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_repeat"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.kolibreath.timetableapp.schedule.addschedule.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.kolibreath.timetableapp.schedule.addschedule.TimePickerFragment
+import com.kolibreath.timetableapp.schedule.addschedule.CourseTimePickerFragment
 
 /**
  * Viewpager 在自定义日程中控制以节数或者是以具体时间为单位选择
@@ -11,7 +11,7 @@ import com.kolibreath.timetableapp.schedule.addschedule.TimePickerFragment
 
 // todo late init fragments
 class TimePickerViewPagerAdapter(
-    private val fragments: ArrayList<TimePickerFragment>,
+    private val fragments: ArrayList<CourseTimePickerFragment>,
     private val fragmentActivity: FragmentActivity
 ): FragmentStateAdapter(fragmentActivity) {
 

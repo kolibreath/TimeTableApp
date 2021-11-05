@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.view.WindowManager
 
 // 和View相关的工具类 （尺寸处理，屏幕长宽获取信息等等）
@@ -12,6 +13,10 @@ import android.view.WindowManager
 fun Context.dp2px(dpValue: Int): Float = resources.displayMetrics.density * dpValue
 
 fun Context.px2dp(pxValue: Int): Float = pxValue / resources.displayMetrics.density
+
+fun Context.dp2sp(dpValue: Int): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue.toFloat(), this.resources.displayMetrics)
+}
 
 fun Context.getScreenWidth(): Int {
     val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager

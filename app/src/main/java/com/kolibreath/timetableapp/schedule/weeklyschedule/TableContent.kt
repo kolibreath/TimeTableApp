@@ -384,6 +384,12 @@ class TableContent(
                 if (!overlap.contains(time)) overlap.add(time)
             }
         }
+//
+//        val temp = overlap.sortedByDescending {
+//            val times = courseTime2Stamp(it)
+//            times[times.size-1] - times[0]
+//        }
+//        return  temp as ArrayList<CourseTime>
 
         return ArrayList(overlap.sortedByDescending {
             val times = courseTime2Stamp(it)

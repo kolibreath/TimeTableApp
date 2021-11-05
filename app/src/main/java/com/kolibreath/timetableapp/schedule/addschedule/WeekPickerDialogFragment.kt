@@ -24,7 +24,9 @@ class WeekPickerDialogFragment(
 
         weekPicker.setOnCancelClickListener(onCancelClickListener)
         weekPicker.setOnConfirmClickListener(onConfirmClickListener)
+
     }
+
 
     /**
      * @param onWeeksSelectedListener 传回点击周数组成的ArrayList

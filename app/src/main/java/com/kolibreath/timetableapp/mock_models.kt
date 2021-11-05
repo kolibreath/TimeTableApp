@@ -153,5 +153,16 @@ data class WeeklyScheduleDetail(
     val note: String = "" // 自定义添加的备注信息
 ): Serializable
 
+
+// todo 移动
+// 添加到日程中的详细时间
+data class ScheduleTime(
+    val year: Int,
+    val month: Int,
+    val date: Int,
+    val dayOfWeek: Int,
+    val hour: Int,
+    val minute: Int
+)
 //TODO 后续时间表Id
 

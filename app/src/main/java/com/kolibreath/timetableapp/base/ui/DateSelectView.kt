@@ -167,7 +167,6 @@ class DateSelectView(
      */
     private fun getCurDateIndex(month: Int): Int {
         //fixme joda-time
-        // 找到当前的日期
         val now = LocalDate.now()
         val firstDay = LocalDate.of(LocalDate.now().year, month, 1)
         return firstDay.dayOfWeek.value + now.dayOfWeek.value - 1

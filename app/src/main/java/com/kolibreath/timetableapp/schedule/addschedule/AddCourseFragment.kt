@@ -72,13 +72,14 @@ class AddCourseFragment: Fragment() {
             inputType = InputType.TYPE_NULL
             setOnClickListener {
                 val timePickerDialogFragment =
-                    TimePickerDialogFragment(R.layout.dialog_fragment_time_picker)
+                    CourseTimePickerDialogFragment(R.layout.dialog_fragment_course_time_picker)
                 timePickerDialogFragment.show(
                     this@AddCourseFragment.requireActivity().supportFragmentManager,
                     TAG_TIME_PICKER_DIALOG_FRAGMENT
                 )
             }
         }
+
 
     }
 

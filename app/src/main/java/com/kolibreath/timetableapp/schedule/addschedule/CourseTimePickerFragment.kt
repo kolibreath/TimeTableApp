@@ -16,7 +16,7 @@ import com.kolibreath.timetableapp.actualNumOfCourses
 /**
  * @param position position = 0 表示通过节数选择 position = 1 表示通过具体时间选择
  */
-class TimePickerFragment (
+class CourseTimePickerFragment (
     private val position: Int
     ) : Fragment(), NumberPicker.OnValueChangeListener{
 
@@ -69,29 +69,29 @@ class TimePickerFragment (
             maxValue = weekdays.size - 1
             value = 0
             wrapSelectorWheel = false // 设置不可滚动
-            setOnValueChangedListener(this@TimePickerFragment)
+            setOnValueChangedListener(this@CourseTimePickerFragment)
             descendantFocusability = DatePicker.FOCUS_BLOCK_DESCENDANTS // 设置不可编辑
         }
         
 
         npCourseNum1 = rootView.findViewById<NumberPicker>(R.id.np_course_num_1).apply {
-            displayedValues = this@TimePickerFragment.times
+            displayedValues = this@CourseTimePickerFragment.times
             minValue = 0
-            maxValue = this@TimePickerFragment.times.size - 1
+            maxValue = this@CourseTimePickerFragment.times.size - 1
             value = 0
             wrapSelectorWheel = false // 设置不可滚动
             descendantFocusability = DatePicker.FOCUS_BLOCK_DESCENDANTS
-            setOnValueChangedListener(this@TimePickerFragment)
+            setOnValueChangedListener(this@CourseTimePickerFragment)
         }
 
         npCourseNum2 = rootView.findViewById<NumberPicker>(R.id.np_course_num_2).apply {
-            displayedValues = this@TimePickerFragment.times
+            displayedValues = this@CourseTimePickerFragment.times
             minValue = 0
-            maxValue = this@TimePickerFragment.times.size - 1
+            maxValue = this@CourseTimePickerFragment.times.size - 1
             value = 1
             wrapSelectorWheel = false // 设置不可滚动
             descendantFocusability = DatePicker.FOCUS_BLOCK_DESCENDANTS
-            setOnValueChangedListener(this@TimePickerFragment)
+            setOnValueChangedListener(this@CourseTimePickerFragment)
         }
 
     }
@@ -113,6 +113,8 @@ class TimePickerFragment (
             }
         }
 
+        picker.performClick()
+
         tvWeek.text = if(position == 0) "$weekday $courseNum1-${courseNum2}节" else "$weekday $courseNum1-${courseNum2}"
         onResultChangeListener.onResultChange(
             weekday = weekday,
@@ -131,6 +133,6 @@ class TimePickerFragment (
 
     companion object {
         //todo why new instance?
-        fun newInstance(position: Int) = TimePickerFragment(position)
+        fun newInstance(position: Int) = CourseTimePickerFragment(position)
     }
 }

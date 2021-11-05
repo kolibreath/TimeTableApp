@@ -6,13 +6,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kolibreath.timetableapp.R
-import com.kolibreath.timetableapp.schedule.addschedule.adapter.TimePickerViewPagerAdapter
 import com.kolibreath.timetableapp.base.BaseBottomDialogFragment
+import com.kolibreath.timetableapp.schedule.addschedule.adapter.TimePickerViewPagerAdapter
 
 /**
  * 包装了TimePickerFragment的弹出框
  */
-class TimePickerDialogFragment(
+class CourseTimePickerDialogFragment(
     private val resId: Int
 ): BaseBottomDialogFragment(resId), View.OnClickListener {
 
@@ -35,21 +35,21 @@ class TimePickerDialogFragment(
         tablayout = rootView.findViewById(R.id.tl_dialog_fragment_time_picker)
         viewPager = rootView.findViewById(R.id.vp_dialog_fragment_time_picker)
 
-        val tabFragmentList = ArrayList<TimePickerFragment>()
+        val tabFragmentList = ArrayList<CourseTimePickerFragment>()
         val tabs = arrayOf("节数", "时间")
 
         for (i in tabs.indices) {
             tablayout.addTab(tablayout.newTab().setText(tabs[i]))
-            tabFragmentList.add(TimePickerFragment.newInstance(i).apply {
-                setOnResultChangeListener(object: TimePickerFragment.OnResultChangeListener {
+            tabFragmentList.add(CourseTimePickerFragment.newInstance(i).apply {
+                setOnResultChangeListener(object: CourseTimePickerFragment.OnResultChangeListener {
                     override fun onResultChange(
                         weekday: String,
                         courseNum1: String,
                         courseNum2: String
                     ) {
-                        this@TimePickerDialogFragment.weekday = weekday
-                        this@TimePickerDialogFragment.courseNum1 = courseNum1
-                        this@TimePickerDialogFragment.courseNum2 = courseNum2
+                        this@CourseTimePickerDialogFragment.weekday = weekday
+                        this@CourseTimePickerDialogFragment.courseNum1 = courseNum1
+                        this@CourseTimePickerDialogFragment.courseNum2 = courseNum2
                     }
                 })
             })

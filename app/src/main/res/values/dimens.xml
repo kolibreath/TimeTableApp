@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="WheelItemTextSize">14sp</dimen>
-    <dimen name="WheelSelectedItemTextSize">20sp</dimen>
-    <dimen name="WheelItemSpace">12dp</dimen>
-    <dimen name="WheelIndicatorSize">2dp</dimen>
-    <dimen name="WheelMargins">8dp</dimen>
-    <dimen name="WheelItemHeightSpace">16dp</dimen>
-    <dimen name="WheelItemWidthSpace">32dp</dimen>
+
 
     <!--   fragment_add_course-->
     <!--   第一个view距离top的dp-->
@@ -18,7 +12,14 @@
     <!-- 输入框的高度   -->
     <dimen name="fac_edt_height">40dp</dimen>
     <!-- 输入框到左边TextView的间隔   -->
-    <dimen name="fac_edt_left_margin">32dp</dimen>
+    <dimen name="fac_edt_left_margin">106dp</dimen>
     <!-- 输入框到Parent右边缘的间隔   -->
     <dimen name="fac_edt_right_margin">32dp</dimen>
+
+    <!-- dialog_fragment_add_schedule_time_picker   -->
+    <!--  title距离顶部的高度  -->
+    <dimen name="fas_margin_top">30dp</dimen>
+
+
+
 </resources>

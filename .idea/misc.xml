@@ -13,11 +13,14 @@
         <entry key="app/src/main/res/layout/diaglog_fragment_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_date.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_date_picker.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/dialog_fragment_course_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_date_picker.xml" value="0.43626183149783393" />
+        <entry key="app/src/main/res/layout/dialog_fragment_schedule_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_week_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_add_course.xml" value="0.38894956572608963" />
         <entry key="app/src/main/res/layout/fragment_add_schedule.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/fragment_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_timetable.xml" value="0.36628254941634186" />
         <entry key="app/src/main/res/layout/item_course_detail.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/item_divider.xml" value="0.4036458333333333" />
@@ -35,6 +38,10 @@
         <entry key="app/src/main/res/layout/view_weekday.xml" value="0.4036458333333333" />
       </map>
     </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_date.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_time.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
