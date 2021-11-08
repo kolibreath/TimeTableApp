@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.ScheduleTime
-import com.kolibreath.timetableapp.base.BaseBottomDialogFragment
+import com.kolibreath.timetableapp.base.ui.dialogfragment.BaseBottomDialogFragment
 import com.kolibreath.timetableapp.num2WeekdayCn
 import com.shawnlin.numberpicker.NumberPicker
 import java.time.LocalDate

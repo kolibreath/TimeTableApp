@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".MainApplication"
         android:theme="@style/Theme.TimeTableApp">
         <activity
             android:name=".MainActivity"
@@ -23,11 +24,13 @@
         <activity android:name=".schedule.detail.ScheduleDetailActivity">
         </activity>
 
+<!--        todo move to ccnubox-android-->
         <activity
             android:name="com.kolibreath.timetableapp.schedule.addschedule.AddScheduleActivity"
             android:windowSoftInputMode="adjustPan">
-
         </activity>
+
+
     </application>
 
 </manifest>

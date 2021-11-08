@@ -26,10 +26,6 @@ class TableContent(
     private val attributeSet: AttributeSet
 ): FrameLayout(contxt, attributeSet) {
 
-    private val WEEK_DAY_WIDTH = contxt.dp2px(65)
-    private val COURSE_HEIGHT = contxt.dp2px(57)
-    private val COURSE_WIDTH = contxt.dp2px(62)
-
     private val scroller = Scroller(contxt)
 
     // 绘制课表中水平和垂直的线段
@@ -64,17 +60,17 @@ class TableContent(
         // 将背景涂成白色打底
         paint.color = Color.WHITE
         paint.style = Paint.Style.FILL
-        canvas.drawRect(0f, 0f, WEEK_DAY_WIDTH * 7, COURSE_HEIGHT * numOfCourses, paint)
+        canvas.drawRect(0f, 0f, weekdayWidth * 7, courseTimeHeight * numOfCourses, paint)
 
         // 绘制水平分割线
         for (i in 0 until numOfCourses) {
-            path.moveTo(0f, (i + 1) * COURSE_HEIGHT)
-            path.lineTo(WEEK_DAY_WIDTH * 7, (i + 1) * COURSE_HEIGHT)
+            path.moveTo(0f, (i + 1) * courseTimeHeight)
+            path.lineTo(weekdayWidth * 7, (i + 1) * courseTimeHeight)
         }
         // 绘制垂直分割线
         for (i in 0 until 7) {
-            path.moveTo(WEEK_DAY_WIDTH * (i + 1), 0f)
-            path.lineTo(WEEK_DAY_WIDTH * (i + 1), COURSE_HEIGHT * numOfCourses)
+            path.moveTo(weekdayWidth * (i + 1), 0f)
+            path.lineTo(weekdayWidth * (i + 1), courseTimeHeight * numOfCourses)
         }
 
         paint.color = resources.getColor(R.color.grey)
@@ -213,13 +209,13 @@ class TableContent(
         }
 
         var during = 0f // 这一节课经过的时间所对应的一节课的比例
-        var topMargin:Float = startMorning.size * COURSE_HEIGHT      // 这一节课相对于顶部的margin
+        var topMargin:Float = startMorning.size * courseTimeHeight      // 这一节课相对于顶部的margin
 
         if (!assignCourseTimeList.contains(courseTime)) {
             // case1: 使用课程节数设置的时间
             val tempList = courseTime.courseTime!!.split(",").map { it.toInt() }
             val step = tempList[tempList.size - 1] - tempList[0] + 1
-            topMargin += (tempList[0] - 1) * COURSE_HEIGHT.toInt()
+            topMargin += (tempList[0] - 1) * courseTimeHeight.toInt()
             during = step.toFloat()
         }else {
             // case:2 手动设置的时间
@@ -240,7 +236,7 @@ class TableContent(
             val startCourseNum = time2courseNum(startMinute)
             // 计算topMargin
             val topStep: Float = ((startMinute - time2minute(startTimes[startCourseNum])).toFloat() / courseInterval )
-            topMargin += (startCourseNum * COURSE_HEIGHT + COURSE_HEIGHT * topStep).toInt()
+            topMargin += (startCourseNum * courseTimeHeight + courseTimeHeight * topStep).toInt()
 
             // 计算during
             // 1. 找到日程结束时间所在的格子
@@ -252,12 +248,12 @@ class TableContent(
 
         // 设置长宽
         val courseParams = LayoutParams(
-            COURSE_WIDTH.toInt(),
-            (COURSE_HEIGHT * during - contxt.dp2px(3)).toInt()
+            courseTimeWidth.toInt(),
+            (courseTimeHeight * during - contxt.dp2px(3)).toInt()
         )
         // 设置margin标记位置
         courseParams.setMargins(
-            WEEK_DAY_WIDTH.toInt() * courseTime.dayOfWeek,
+            weekdayWidth.toInt() * courseTime.dayOfWeek,
             topMargin.toInt(), 0, 0
         )
         val curWeek = weekNum in courseTime.weeks.split(",").map { it.toInt()}

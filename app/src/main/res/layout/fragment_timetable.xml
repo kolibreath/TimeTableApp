@@ -2,13 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTable
         android:id="@+id/timetable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp" />
+        android:layout_marginTop="@dimen/toolbar_height" />
 
     <View
         android:id="@+id/shade_view"
@@ -17,61 +18,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.kolibreath.timetableapp.schedule.weeklyschedule.WeekSelectView
-        android:id="@+id/view_week_select"
-        android:layout_marginTop="56dp"
-        android:layout_width="match_parent"
-        android:elevation="1dp"
-        android:layout_height="wrap_content"/>
 
-    <RelativeLayout
-        android:id="@+id/tool_layout"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/white"
-        android:translationZ="1dp">
-
-        <TextView
-            android:id="@+id/tv_switch_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="视图切换"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_week_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="第15周"
-            android:textSize="16sp" />
-
-        <!--        todo 增加选择周数的图标-->
-        <ImageButton
-            android:id="@+id/ib_week_select"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_centerInParent="true"
-            android:layout_toRightOf="@+id/tv_week_select"
-            android:background="@color/black" />
-
-        <ImageButton
-            android:id="@+id/ib_schedule"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:background="@color/black" />
-    </RelativeLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_utils"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </RelativeLayout>

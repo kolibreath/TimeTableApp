@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.viewpager2.widget.ViewPager2
 import com.kolibreath.timetableapp.R
-import com.kolibreath.timetableapp.base.BaseBottomDialogFragment
+import com.kolibreath.timetableapp.base.ui.dialogfragment.BaseBottomDialogFragment
 import java.time.LocalDate
 
 

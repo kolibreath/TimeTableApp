@@ -6,7 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kolibreath.timetableapp.R
-import com.kolibreath.timetableapp.base.BaseBottomDialogFragment
+import com.kolibreath.timetableapp.base.ui.dialogfragment.BaseBottomDialogFragment
 import com.kolibreath.timetableapp.schedule.addschedule.adapter.TimePickerViewPagerAdapter
 
 /**

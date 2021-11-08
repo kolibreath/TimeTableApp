@@ -3,11 +3,9 @@ package com.kolibreath.timetableapp.schedule.weeklyschedule
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.TextView
-import com.kolibreath.timetableapp.R
-import com.kolibreath.timetableapp.getCurrWeekNum
-import com.kolibreath.timetableapp.getWholeWeek4CurWeekNum
-import com.kolibreath.timetableapp.num2WeekdayEn
+import com.kolibreath.timetableapp.*
 
 // 课程表顶部显示当前的时间的View
 class WeekLayout(
@@ -25,14 +23,17 @@ class WeekLayout(
         val list = getWholeWeek4CurWeekNum(getCurrWeekNum())
         for(i in 0 until 7){
             val view = LayoutInflater.from(contxt).inflate(R.layout.view_week, this, false)
-
+            // 根据收集屏幕设置大小
+            val params = ViewGroup.LayoutParams(
+                weekdayWidth.toInt(), weekdayHeight.toInt()
+            )
             val tvWeekday = view.findViewById(R.id.tv_weekday) as TextView
             val tvDate = view.findViewById(R.id.tv_date) as TextView
 
             tvWeekday.text = num2WeekdayEn(i)
             tvDate.text = list[i]
 
-            addView(view)
+            addView(view, params)
         }
     }
 }

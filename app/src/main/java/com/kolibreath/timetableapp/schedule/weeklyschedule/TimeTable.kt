@@ -4,12 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Scroller
-import com.kolibreath.timetableapp.R
-import com.kolibreath.timetableapp.dp2px
-import com.kolibreath.timetableapp.getScreenWidth
-import com.kolibreath.timetableapp.startMorning
+import com.kolibreath.timetableapp.*
 
 /**
  * 掌管着整个课程表内容的显示、事件处理、滑动处理工作
@@ -20,25 +18,42 @@ class TimeTable(
 ): RelativeLayout(contxt, attributeSet) {
 
     // 表示当前View的长宽信息
-    private val WEEK_DAY_WIDTH = contxt.dp2px(65)
-    private val COURSE_TIME_HEIGHT = contxt.dp2px(57)
-    private val COURSE_TIME_WIDTH = contxt.dp2px(62)
-    private val LITTLE_VIEW_WIDTH = contxt.dp2px(49)
-    private val LITTLE_VIEW_HEIGHT = contxt.dp2px(41)
-
     private var courseTimeLayout: CourseTimeLayout
     private var weekLayout: WeekLayout
     private var timeTableContent: TableContent
-    private var timeTableLayout: TimeTableLayout
+    private var timeTableLayout: RelativeLayout
 
     private val scroller = Scroller(contxt)
 
     init {
         val rootView = LayoutInflater.from(contxt).inflate(R.layout.view_timetable, this)
-        courseTimeLayout = rootView.findViewById(R.id.course_time_layout) as CourseTimeLayout
-        weekLayout = rootView.findViewById(R.id.week_layout) as WeekLayout
+        courseTimeLayout = (rootView.findViewById(R.id.course_time_layout) as CourseTimeLayout).apply {
+            if( parent != null ) {
+                (this.parent as ViewGroup).removeView(this)
+            }
+        }
+        weekLayout = (rootView.findViewById(R.id.week_layout) as WeekLayout).apply {
+            if(parent != null) {
+                (this.parent as ViewGroup).removeView(this)
+            }
+        }
         timeTableContent = rootView.findViewById(R.id.timetable_content)
         timeTableLayout = rootView.findViewById(R.id.layout_table)
+
+        // 修改WeekLayout 和 TimeContent的宽度
+        val courseTimeParams = courseTimeLayout.layoutParams.apply {
+            width = courseTimeWidth.toInt() * 7
+            height = contxt.dp2px(resources.getDimension(R.dimen.course_time_layout_height).toInt()).toInt()
+        }
+
+        val weekLayoutParams = weekLayout.layoutParams.apply {
+            width = courseTimeWidth.toInt() * 7
+            height = contxt.dp2px(resources.getDimension(R.dimen.course_time_layout_height).toInt()).toInt()
+        }
+
+        rootView as ViewGroup
+        timeTableLayout.addView(courseTimeLayout, courseTimeParams)
+        timeTableLayout.addView(weekLayout, weekLayoutParams)
     }
 
     // 计算手指的位移欧氏距离距离
@@ -54,7 +69,7 @@ class TimeTable(
     private var lastY = 0f
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val outerHeight = (COURSE_TIME_HEIGHT * startMorning.size).toInt()
+        val outerHeight = (courseTimeHeight * startMorning.size).toInt()
         when(event.action) {
             MotionEvent.ACTION_DOWN -> {
                 startX = event.x
@@ -76,11 +91,11 @@ class TimeTable(
                 // 2. 水平滑动的右边界：
                 // 当向左滑动的长度大于宽度减去屏幕宽度时
                 val diffX = scrolledX + lastX - event.x
-                val constraintWidth =  WEEK_DAY_WIDTH * 7 + LITTLE_VIEW_WIDTH - contxt.getScreenWidth()
+                val constraintWidth =  weekdayWidth * 7 + littleViewWidth - contxt.getScreenWidth()
                 distanceX = when {
                     diffX < 0 -> 0
                     diffX > constraintWidth ->
-                        (WEEK_DAY_WIDTH * 7 + LITTLE_VIEW_WIDTH - contxt.getScreenWidth() - scrolledX).toInt()
+                        (weekdayWidth * 7 + littleViewWidth - contxt.getScreenWidth() - scrolledX).toInt()
                     else -> (lastX - event.x).toInt()
 
                 }

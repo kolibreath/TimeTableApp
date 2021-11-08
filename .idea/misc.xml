@@ -15,6 +15,8 @@
         <entry key="app/src/main/res/layout/dialog_date_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_course_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_date_picker.xml" value="0.43626183149783393" />
+        <entry key="app/src/main/res/layout/dialog_fragment_export.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/dialog_fragment_import.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_schedule_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_time_picker.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/dialog_fragment_week_picker.xml" value="0.4036458333333333" />
@@ -27,6 +29,7 @@
         <entry key="app/src/main/res/layout/item_schedule_detail.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/layout_date.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/layout_time.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/layout_timetable_toolbar.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_add_course.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_course_schedule.xml" value="0.7185758621246503" />
@@ -38,10 +41,6 @@
         <entry key="app/src/main/res/layout/view_weekday.xml" value="0.4036458333333333" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_date.xml" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_time.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

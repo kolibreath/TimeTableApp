@@ -16,64 +16,75 @@
         android:textSize="10sp"/>
 
 
-
-    <com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTableLayout
+<!--todo modified-->
+    <RelativeLayout
         android:id="@+id/layout_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_curweek_set">
 
         <View
-            android:id="@+id/divider"
+            android:id="@+id/view_divider_top"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divider"/>
+            android:background="@color/divider" />
 
         <View
+            android:id="@+id/view_divider_vertical"
             android:layout_width="1dp"
             android:layout_height="41dp"
-            android:layout_below="@+id/divider"
+            android:layout_below="@+id/view_divider_top"
             android:layout_marginLeft="48dp"
             android:background="@color/divider"/>
 
         <View
-            android:layout_width="49dp"
+            android:id="@+id/view_divider_horizontal"
+            android:layout_width="@dimen/little_view_width"
             android:layout_height="1dp"
-            android:layout_below="@+id/divider"
+            android:layout_below="@+id/view_divider_top"
             android:layout_marginTop="40dp"
             android:background="@color/divider"
             />
 
+        <!-- little_view-->
         <View
+            android:id="@+id/view_little"
             android:layout_width="48dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/divider"
+            android:layout_below="@+id/view_divider_top"
             android:layout_marginTop="-1dp"
             android:background="@color/white" />
 
-        <com.kolibreath.timetableapp.schedule.weeklyschedule.TableContent
-            android:id="@+id/timetable_content"
-            android:layout_width="455dp"
-            android:layout_height="798dp"
-            android:layout_below="@+id/divider"
-            android:layout_marginLeft="49dp"
-            android:layout_marginTop="41dp" />
+        <!-- TableContent的宽度原本设置为65dp * 7 = 455dp 但是需要根据屏幕宽度适配
+             会在具体代码中进行修改-->
+        <com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTableLayout
+            android:layout_below="@+id/view_divider_top"
+            android:layout_marginStart="@dimen/little_view_width"
+            android:layout_marginTop="@dimen/week_layout_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.kolibreath.timetableapp.schedule.weeklyschedule.TableContent
+                android:id="@+id/timetable_content"
+                android:layout_width="455dp"
+                android:layout_height="@dimen/table_content_height" />
+        </com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTableLayout>
+
 
         <com.kolibreath.timetableapp.schedule.weeklyschedule.WeekLayout
             android:id="@+id/week_layout"
             android:layout_width="455dp"
-            android:layout_height="41dp"
-            android:layout_below="@id/divider"
-            android:layout_marginLeft="49dp" />
+            android:layout_height="@dimen/week_layout_height"
+            android:layout_below="@id/view_divider_top"
+            android:layout_marginLeft="@dimen/little_view_width" />
 
         <com.kolibreath.timetableapp.schedule.weeklyschedule.CourseTimeLayout
             android:id="@+id/course_time_layout"
-            android:layout_width="49dp"
-            android:layout_height="798dp"
-            android:layout_below="@id/divider"
-            android:layout_marginTop="41dp" />
+            android:layout_width="@dimen/little_view_width"
+            android:layout_height="@dimen/course_time_layout_height"
+            android:layout_below="@id/view_divider_top"
+            android:layout_marginTop="@dimen/week_layout_height" />
 
-    </com.kolibreath.timetableapp.schedule.weeklyschedule.TimeTableLayout>
+    </RelativeLayout>
 
 
 </merge>

@@ -2,7 +2,7 @@ package com.kolibreath.timetableapp.schedule.addschedule
 
 import android.view.View
 import com.kolibreath.timetableapp.R
-import com.kolibreath.timetableapp.base.BaseBottomDialogFragment
+import com.kolibreath.timetableapp.base.ui.dialogfragment.BaseBottomDialogFragment
 
 class WeekPickerDialogFragment(
     private val resId: Int

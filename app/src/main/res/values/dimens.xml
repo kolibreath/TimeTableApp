@@ -21,5 +21,15 @@
     <dimen name="fas_margin_top">30dp</dimen>
 
 
+    <!--  view_timetable -->
+    <dimen name="little_view_width">49dp</dimen>
+    <dimen name="week_layout_height">41dp</dimen>
+    <dimen name="course_time_height">57dp</dimen>
+    <dimen name="table_content_height">798dp</dimen>
+    <dimen name="course_time_layout_height">798dp</dimen>
 
+    <dimen name="toolbar_height">56dp</dimen>
+
+    <!-- layout_time_table_toolbar   -->
+    <dimen name="function_margin">13dp</dimen>
 </resources>
