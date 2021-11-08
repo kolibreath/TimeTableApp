@@ -21,4 +21,11 @@
     <!-- 按钮  -->
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
+
+    <!-- 课表设置   -->
+    <string name="semester_setting">学期设置</string>
+    <string name="course_setting">课程设置</string>
+    <string name="show_course_only">只显示课程</string>
+    <string name="show_time">显示时间</string>
+    <string name="wallpaper_change">切换背景</string>
 </resources>

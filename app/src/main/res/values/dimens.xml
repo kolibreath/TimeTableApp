@@ -32,4 +32,9 @@
 
     <!-- layout_time_table_toolbar   -->
     <dimen name="function_margin">13dp</dimen>
+
+    <!-- 课表设置    -->
+    <dimen name="item_ver_margin">13dp</dimen>
+    <dimen name="item_margin_left">10dp</dimen>
+    <dimen name="item_margin_right">10dp</dimen>
 </resources>

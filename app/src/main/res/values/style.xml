@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BaseBottomDialogFragmentAnim" mce_bogus="1" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/in_date_picker</item>
-        <item name="android:windowExitAnimation">@anim/out_date_picker</item>
+        <item name="android:windowEnterAnimation">@anim/in_bottom_dialog_fragment</item>
+        <item name="android:windowExitAnimation">@anim/out_bottom_dialog_fragment</item>
+    </style>
+
+    <style name="PopupWindowAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/in_popup_window</item>
+        <item name="android:windowExitAnimation">@anim/out_popup_window</item>
     </style>
 </resources>

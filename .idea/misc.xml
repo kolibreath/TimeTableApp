@@ -30,12 +30,14 @@
         <entry key="app/src/main/res/layout/layout_date.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/layout_time.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/layout_timetable_toolbar.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/popup_window_time_table_settings.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_add_course.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_course_schedule.xml" value="0.7185758621246503" />
         <entry key="app/src/main/res/layout/view_date_picker.xml" value="0.39146805269645746" />
         <entry key="app/src/main/res/layout/view_month.xml" value="0.19630192502532928" />
         <entry key="app/src/main/res/layout/view_select_course_num.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/view_time_table_settings.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_timetable.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_week.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/view_weekday.xml" value="0.4036458333333333" />
