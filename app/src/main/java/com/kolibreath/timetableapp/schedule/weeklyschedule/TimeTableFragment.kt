@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kolibreath.timetableapp.*
+import com.kolibreath.timetableapp.base.BaseFragment
 import com.kolibreath.timetableapp.schedule.addschedule.AddScheduleActivity
 
 class TimeTableFragment: BaseFragment(){

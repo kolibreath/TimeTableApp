@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.base.ui
+package com.kolibreath.timetableapp.base.ui.datepicker
 
 import android.os.Build
 import android.view.View
@@ -36,7 +36,7 @@ class DatePickerDialogFragment(
         viewPager.setCurrentItem(3, true)
         viewPager.adapter = DateSelectViewAdapter(
             requireActivity(),
-            object: DateSelectViewAdapter.OnDateSelectConfirmListener{
+            object: DateSelectViewAdapter.OnDateSelectConfirmListener {
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onDateSelectConfirmListener(date: Int, month: Int) {
                     // fixme joda-time

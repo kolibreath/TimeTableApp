@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp
+package com.kolibreath.timetableapp.base
 
 import androidx.fragment.app.Fragment
 

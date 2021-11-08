@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.base.ui
+package com.kolibreath.timetableapp.base.ui.datepicker
 
 import android.content.Context
 import android.os.Build

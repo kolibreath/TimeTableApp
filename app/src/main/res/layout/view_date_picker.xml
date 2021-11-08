@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.kolibreath.timetableapp.base.ui.DateSelectView
+    <com.kolibreath.timetableapp.base.ui.datepicker.DateSelectView
         android:id="@+id/view_date_select"
         app:layout_constraintTop_toBottomOf="@id/week_title_view"
         android:layout_width="match_parent"
