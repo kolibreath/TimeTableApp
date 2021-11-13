@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
-import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.actualNumOfCourses
+import com.shawnlin.numberpicker.NumberPicker
 
 // 选择 周数 和 具体的时间
 // 选择的结果为 周二 1 - 2 节 或 周二 8：00 - 9：00 使用ViewPager2提供两种选择方式

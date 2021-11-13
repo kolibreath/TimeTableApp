@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="19sp"
         android:text="开始时间"
+        android:textStyle="bold"
         android:layout_marginTop="@dimen/fas_margin_top"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"

@@ -17,30 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/vp_dialog_fragment_time_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_cancel"
-            android:text="@string/cancel"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_confirm"
-            android:text="@string/confirm"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+<!--    <include-->
+<!--        android:id="@+id/layout_buttons"-->
+<!--        layout="@layout/layout_buttons"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tl_dialog_fragment_time_picker" />-->
 </RelativeLayout>

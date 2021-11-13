@@ -1,12 +1,15 @@
 package com.kolibreath.timetableapp.schedule.addschedule
 
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.base.ui.dialogfragment.BaseBottomDialogFragment
+import com.kolibreath.timetableapp.dp2px
 import com.kolibreath.timetableapp.schedule.addschedule.adapter.TimePickerViewPagerAdapter
 
 /**
@@ -15,10 +18,7 @@ import com.kolibreath.timetableapp.schedule.addschedule.adapter.TimePickerViewPa
  */
 class CourseTimePickerDialogFragment(
     private val resId: Int
-): BaseBottomDialogFragment(resId), View.OnClickListener {
-
-    private lateinit var btnCancel: TextView
-    private lateinit var btnConfirm: TextView
+): BaseBottomDialogFragment(resId) {
 
     //tab layout and view pager
     private lateinit var tablayout: TabLayout
@@ -30,8 +30,6 @@ class CourseTimePickerDialogFragment(
     private var courseNum2 = ""
 
     override fun initChild(rootView: View) {
-        btnCancel = rootView.findViewById(R.id.tv_cancel)
-        btnConfirm = rootView.findViewById(R.id.tv_confirm)
 
         tablayout = rootView.findViewById(R.id.tl_dialog_fragment_time_picker)
         viewPager = rootView.findViewById(R.id.vp_dialog_fragment_time_picker)
@@ -64,14 +62,25 @@ class CourseTimePickerDialogFragment(
             tab.text = tabs[position]
         }.attach()
 
+        // fixme 为什么直接使用include 显示的Layout在ViewPager2上面？
+        val includeRootView = LayoutInflater.from(requireActivity()).inflate(R.layout.layout_buttons, null, false)
+        includeRootView.findViewById<TextView>(R.id.btn_cancel).apply {
+            setOnClickListener { dismiss() }
+        }
+        includeRootView.findViewById<TextView>(R.id.btn_confirm).apply {
+            setOnClickListener {
+                // todo add new schedule to database
+                dismiss()
+            }
+        }
+        val vertMargin = requireActivity().dp2px(20).toInt()
+        val params = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            addRule(RelativeLayout.BELOW, R.id.vp_dialog_fragment_time_picker)
+            topMargin = vertMargin
+        }
+        (rootView as RelativeLayout).addView(includeRootView, params)
     }
-
-
-
-    override fun onClick(v: View?) {
-        // todo implement event for user completes selecting weeks
-        // 还需要检查返回的数据的合法性
-    }
-
-
 }
