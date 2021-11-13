@@ -2,6 +2,9 @@
     <string name="app_name">TimeTableApp</string>
 
     <!-- fragment_add_course -->
+    <string name="basic_settings">基础设定</string>
+    <string name="time_settings">时间设定</string>
+    <string name="add_course">添加课程</string>
     <string name="course_name">课程</string>
     <string name="course_type">类别</string>
     <string name="course_location">地点</string>
@@ -10,6 +13,15 @@
     <string name="note">备注</string>
     <string name="week_num">周数</string>
     <string name="time">时间</string>
+
+    <string name="hint_course_name">请输入课程名称</string>
+    <string name="hint_teacher_name">请输入教师名称</string>
+    <string name="hint_location">请输入授课地点</string>
+    <string name="hint_note">备注（可以不填写）</string>
+    <string name="default_week_range">第1-21周</string>
+    <string name="default_time_range">第1-2节课</string>
+    <string name="hint_description">请输入日程描述</string>
+
 
     <!-- fragment add_schedule   -->
     <string name="description">描述</string>
@@ -28,4 +40,8 @@
     <string name="show_course_only">只显示课程</string>
     <string name="show_time">显示时间</string>
     <string name="wallpaper_change">切换背景</string>
+
+    <!-- toolbar 中的当前页面名称     -->
+    <string name="schedule_detail">课程详情</string>
+    <string name="add_schedule">添加日程</string>
 </resources>

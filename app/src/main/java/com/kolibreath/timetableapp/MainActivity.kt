@@ -1,5 +1,6 @@
 package com.kolibreath.timetableapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.kolibreath.timetableapp.schedule.addschedule.AddScheduleActivity
 import com.kolibreath.timetableapp.schedule.weeklyschedule.*
 import java.time.LocalDate
 
@@ -130,6 +132,11 @@ class MainActivity : AppCompatActivity() {
                 settingView.visibility = View.GONE
                 true
             }
+        }
+
+        ibAddSchedule.setOnClickListener {
+            val intent = Intent(this@MainActivity, AddScheduleActivity::class.java)
+            this@MainActivity.startActivity(intent)
         }
     }
 

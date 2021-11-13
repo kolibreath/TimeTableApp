@@ -5,23 +5,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:id="@+id/tool_layout"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/white"
-        android:translationZ="1dp">
-    </RelativeLayout>
+   <include layout="@layout/layout_general_toolbar"/>
 
     <com.google.android.material.tabs.TabLayout
-        android:layout_below="@id/tool_layout"
         android:id="@+id/tl_add_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_below="@id/layout_general_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabTextColor="@color/black"
-        app:tabSelectedTextColor="@color/blue" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabSelectedTextColor="@color/blue"
+        app:tabTextColor="@color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_add_schedule"

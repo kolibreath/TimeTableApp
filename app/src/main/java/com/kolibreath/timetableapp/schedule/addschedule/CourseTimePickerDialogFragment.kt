@@ -10,7 +10,8 @@ import com.kolibreath.timetableapp.base.ui.dialogfragment.BaseBottomDialogFragme
 import com.kolibreath.timetableapp.schedule.addschedule.adapter.TimePickerViewPagerAdapter
 
 /**
- * 包装了TimePickerFragment的弹出框
+ * 该弹出框包括两个部分，一个节数选择 一个时间选择
+ * 具体的UI包装在ViewPager中，使用CourseTimePickerFragment实现
  */
 class CourseTimePickerDialogFragment(
     private val resId: Int

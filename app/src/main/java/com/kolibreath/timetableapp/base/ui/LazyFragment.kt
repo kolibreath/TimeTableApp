@@ -1,4 +1,4 @@
-package com.kolibreath.timetableapp.base
+package com.kolibreath.timetableapp.base.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

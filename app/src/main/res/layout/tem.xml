@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--添加课程的View-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_setting_type"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fac_setting_margin_top"
+        android:layout_marginStart="@dimen/fac_setting_margin_start"
+        android:text="@string/basic_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/tv_add_course_description"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_setting_type"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="@dimen/fac_item_margin_left"
+        android:background="@drawable/ic_description"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
+
+    <EditText
+        android:id="@+id/edt_add_schedule_description"
+        android:lines="1"
+        android:maxLength="20"
+        android:hint="@string/hint_description"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_add_course_description"
+        app:layout_constraintLeft_toRightOf="@id/tv_add_course_description"
+        app:layout_constraintTop_toTopOf="@id/tv_add_course_description"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="5dp"
+        android:background="@null" />
+
+    <ImageView
+        android:id="@+id/tv_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_course_description"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginStart="@dimen/fac_item_margin_left"
+        android:background="@drawable/ic_type"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
+
+    <EditText
+        android:id="@+id/edt_type"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        android:hint="暂时不设置"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintTop_toTopOf="@id/tv_type"
+        android:background="@null" />
+
+    <View
+        android:id="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@id/edt_type"
+        android:background="@color/divider"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+
+    <TextView
+        android:id="@+id/tv_time_settings"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fac_setting_margin_top"
+        android:layout_marginStart="@dimen/fac_setting_margin_start"
+        android:text="@string/time_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/tv_start_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_time_settings"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginStart="@dimen/fac_item_margin_left"
+        android:background="@drawable/ic_time"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
+
+<!--    开始时间和结束时间的Hint需要额外设置-->
+    <EditText
+        android:id="@+id/edt_week_num"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
+        android:hint="@string/default_week_range"
+        app:layout_constraintBottom_toBottomOf="@id/tv_start_time"
+        app:layout_constraintLeft_toRightOf="@id/tv_start_time"
+        app:layout_constraintTop_toTopOf="@id/tv_start_time"
+        android:background="@null" />
+
+    <ImageView
+        android:id="@+id/tv_end_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_start_time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginStart="@dimen/fac_item_margin_left"
+        android:background="@drawable/ic_time"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
+
+    <EditText
+        android:id="@+id/edt_end_time"
+        android:hint="@string/default_time_range"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_end_time"
+        app:layout_constraintLeft_toRightOf="@id/tv_end_time"
+        app:layout_constraintTop_toTopOf="@id/tv_end_time"
+        android:layout_marginStart="5dp"
+        android:background="@null" />
+
+
+    <ImageView
+        android:id="@+id/tv_repeat"
+        app:layout_constraintTop_toBottomOf="@id/tv_end_time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+        android:layout_marginStart="@dimen/fac_item_margin_left"
+        android:background="@drawable/ic_repeat"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
+
+    <EditText
+        android:id="@+id/edt_repeat"
+        android:hint="暂时不设置"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_repeat"
+        app:layout_constraintLeft_toRightOf="@id/tv_repeat"
+        app:layout_constraintTop_toTopOf="@id/tv_repeat"
+        android:layout_marginStart="5dp"
+        android:background="@null" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

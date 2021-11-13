@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kolibreath.timetableapp.*
-import com.kolibreath.timetableapp.base.LazyFragment
+import com.kolibreath.timetableapp.base.ui.LazyFragment
 
 class TimeTableFragment(
     private val resId: Int = R.layout.fragment_timetable,

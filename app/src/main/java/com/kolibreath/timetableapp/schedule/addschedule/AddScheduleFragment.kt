@@ -1,7 +1,6 @@
 package com.kolibreath.timetableapp.schedule.addschedule
 
 import android.os.Bundle
-import android.text.InputType
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.ScheduleTime
+import com.kolibreath.timetableapp.base.ui.RippleLayout
 import com.kolibreath.timetableapp.num2WeekdayCn
 
 class AddScheduleFragment: Fragment() {
@@ -33,8 +33,11 @@ class AddScheduleFragment: Fragment() {
     private fun initView(rootView: View) {
         edtDescription = rootView.findViewById<EditText>(R.id.edt_add_schedule_description)
         edtType = rootView.findViewById<EditText>(R.id.edt_type)
-        edtStartTime = rootView.findViewById<EditText>(R.id.edt_start_time).apply {
-            inputType = InputType.TYPE_NULL
+        edtStartTime = rootView.findViewById(R.id.edt_start_time)
+        edtEndTime = rootView.findViewById(R.id.edt_end_time)
+        edtRepeat = rootView.findViewById(R.id.edt_repeat)
+
+        rootView.findViewById<RippleLayout>(R.id.layout_start_time).apply {
             setOnClickListener {
                 val dialog = ScheduleTimePickerDialogFragment(
                     titleName = "开始时间",
@@ -47,7 +50,7 @@ class AddScheduleFragment: Fragment() {
                 dialog.setOnScheduleTimeSelectedListener(object :
                     ScheduleTimePickerDialogFragment.OnScheduleTimeSelectedListener {
                     override fun onScheduleTimeSelected(time: ScheduleTime) {
-                        this@apply.text =
+                         edtStartTime.text =
                             SpannableStringBuilder(
                                 "${time.year}年${time.month}月${time.date}日 ${num2WeekdayCn(time.dayOfWeek-1)} ${time.hour} : ${time.minute}"
                             )
@@ -55,8 +58,8 @@ class AddScheduleFragment: Fragment() {
                 })
             }
         }
-        edtEndTime = rootView.findViewById<EditText>(R.id.edt_end_time).apply {
-            inputType = InputType.TYPE_NULL
+
+        rootView.findViewById<RippleLayout>(R.id.layout_end_time).apply {
             setOnClickListener {
                 val dialog = ScheduleTimePickerDialogFragment(
                     titleName = "结束时间",
@@ -69,7 +72,7 @@ class AddScheduleFragment: Fragment() {
                 dialog.setOnScheduleTimeSelectedListener(object :
                     ScheduleTimePickerDialogFragment.OnScheduleTimeSelectedListener {
                     override fun onScheduleTimeSelected(time: ScheduleTime) {
-                        this@apply.text =
+                        edtEndTime.text =
                             SpannableStringBuilder(
                                 "${time.year}年${time.month}月${time.date}日 ${num2WeekdayCn(time.dayOfWeek-1)} ${time.hour} : ${time.minute}"
                             )
@@ -77,7 +80,6 @@ class AddScheduleFragment: Fragment() {
                 })
             }
         }
-        edtRepeat = rootView.findViewById<EditText>(R.id.edt_repeat)
 
     }
 }

@@ -4,15 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.WeeklyScheduleDetail
 import com.kolibreath.timetableapp.dp2px
-import com.kolibreath.timetableapp.getScreenWidth
 
 /**
  * 加载详情类型的Adapter 主要有三种类型：
@@ -100,7 +99,8 @@ class WeeklyDetailViewHolder(
 
         val belowId = if(detail.note.isNotEmpty()) R.id.tv_note else R.id.tv_course_teacher
         // todo edit and delete callbacks
-        addButtons(belowId, rootView as RelativeLayout, {}, {})
+        addButtons(belowId, rootView as ConstraintLayout, {}, {})
+
 
         tvCourseName.text = detail.name
         tvLocation.text = detail.location
@@ -126,7 +126,7 @@ class WeeklyDetailViewHolder(
 
         val belowId = if(detail.note.isNotEmpty()) R.id.tv_note else R.id.tv_type
         // todo edit and delete callbacks
-        addButtons(belowId, rootView as RelativeLayout, {}, {})
+        addButtons(belowId, rootView as ConstraintLayout, {}, {})
 
         tvDescription.text = detail.description
         tvLocation.text = detail.location
@@ -138,37 +138,29 @@ class WeeklyDetailViewHolder(
      * 动态向Item中添加两个Button，因为不确定是否需要显示note
      */
     private fun addButtons(belowId: Int,
-                           rootView: RelativeLayout,
+                           rootView: ConstraintLayout,
                            editCallback: (View)-> Unit,
                            deleteCallback: (View) -> Unit ){
 
-        val context = rootView.context
-        // 垂直方向上的margin
-        val vertMargin = context.dp2px(16).toInt()
-        // 布局类似于:
-        // margin editButton margin margin deleteButton margin
-        val margin = context.dp2px(20).toInt()
-        val width = ((context.getScreenWidth() - 4 * margin) / 2).toInt()
-
-        // edit button
-        val editButton = Button(rootView.context).apply { setOnClickListener(editCallback); text = "编辑" }
-        val editLayoutParams = RelativeLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
-            addRule(RelativeLayout.BELOW, belowId)
-            leftMargin = margin
+        val vertMargin = rootView.context.dp2px(24).toInt()
+        val params = ConstraintLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
+            topToBottom = belowId
+            leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID
             this.topMargin = vertMargin
             bottomMargin = vertMargin
         }
-        rootView.addView(editButton, editLayoutParams)
-
-        // delelte button
-        val deleteButton = Button(rootView.context).apply { setOnClickListener(deleteCallback); text = "删除"}
-        val deleteLayoutParams = RelativeLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
-            addRule(RelativeLayout.BELOW, belowId)
-            leftMargin = margin + width + margin + margin
-            this.topMargin = vertMargin
-            bottomMargin = vertMargin
+        val buttonsLayout = LayoutInflater.from(rootView.context).inflate(R.layout.layout_buttons, null, false)
+        buttonsLayout.findViewById<TextView>(R.id.btn_cancel).apply {
+            text = "删除"
+            setOnClickListener(deleteCallback)
         }
-        rootView.addView(deleteButton, deleteLayoutParams)
+         buttonsLayout.findViewById<TextView>(R.id.btn_confirm).apply {
+            text = "编辑"
+            setOnClickListener(editCallback)
+        }
+        rootView.addView(buttonsLayout, params)
     }
 
 

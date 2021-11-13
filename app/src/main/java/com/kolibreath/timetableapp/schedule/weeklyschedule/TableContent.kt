@@ -6,13 +6,13 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
-import android.os.Bundle
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.Scroller
 import com.kolibreath.timetableapp.*
+import com.kolibreath.timetableapp.base.LiveDataBus
 import com.kolibreath.timetableapp.schedule.detail.ScheduleDetailActivity
 
 /**
@@ -200,11 +200,12 @@ class TableContent(
 
         // 点击事件 传递参数是List 包括当前的CourseTime和可能重叠的courseTime
         courseView.setOnClickListener {
-            // fixme kotlin ArrayList List
-            val details = ArrayList(getOverlapCourses(courseTime).map { courseTime2Detail(courseTime) })
-            val bundle = Bundle().apply { putSerializable("details", details) }
+            val details = ArrayList(getOverlapCourses(courseTime).map { courseTime2Detail(it) })
+            LiveDataBus.get<ArrayList<WeeklyScheduleDetail>>(
+                WEEKLY_SCHEDULE_DETAILS
+            ).value = details
+
             val intent = Intent(this@TableContent.contxt, ScheduleDetailActivity::class.java)
-            intent.putExtra("detail_bundle", bundle)
             this@TableContent.contxt.startActivity(intent)
         }
 
@@ -380,12 +381,6 @@ class TableContent(
                 if (!overlap.contains(time)) overlap.add(time)
             }
         }
-//
-//        val temp = overlap.sortedByDescending {
-//            val times = courseTime2Stamp(it)
-//            times[times.size-1] - times[0]
-//        }
-//        return  temp as ArrayList<CourseTime>
 
         return ArrayList(overlap.sortedByDescending {
             val times = courseTime2Stamp(it)

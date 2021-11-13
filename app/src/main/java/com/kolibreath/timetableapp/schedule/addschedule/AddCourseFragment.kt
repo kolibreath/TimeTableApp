@@ -2,17 +2,18 @@ package com.kolibreath.timetableapp.schedule.addschedule
 
 import android.os.Build
 import android.os.Bundle
-import android.text.InputType
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.kolibreath.timetableapp.R
 import com.kolibreath.timetableapp.TAG_TIME_PICKER_DIALOG_FRAGMENT
 import com.kolibreath.timetableapp.TAG_WEEK_PICKER_DIALOG_FRAGMENT
+import com.kolibreath.timetableapp.base.ui.RippleLayout
 
 class AddCourseFragment: Fragment() {
 
@@ -23,9 +24,8 @@ class AddCourseFragment: Fragment() {
     private lateinit var edtPriority: EditText
     private lateinit var edtNote: EditText
 
-    // 时间EditText不可以修改，点击之后直接弹出设置时间的Dialog
-    private lateinit var edtWeekNum: EditText
-    private lateinit var edtTime: EditText
+    private lateinit var edtWeekNum: TextView
+    private lateinit var edtTime: TextView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -48,8 +48,7 @@ class AddCourseFragment: Fragment() {
         edtPriority = rootView.findViewById(R.id.edt_priority)
         edtNote = rootView.findViewById(R.id.edt_note)
 
-        edtWeekNum = rootView.findViewById<EditText>(R.id.edt_week_num).apply{
-            inputType = InputType.TYPE_NULL
+        rootView.findViewById<RippleLayout>(R.id.layout_week_num).apply {
             setOnClickListener {
                 val weekPickerDialogFragment =
                     WeekPickerDialogFragment(R.layout.dialog_fragment_week_picker)
@@ -68,8 +67,7 @@ class AddCourseFragment: Fragment() {
             }
         }
 
-        edtTime = rootView.findViewById<EditText>(R.id.edt_time).apply {
-            inputType = InputType.TYPE_NULL
+        rootView.findViewById<RippleLayout>(R.id.layout_time).apply {
             setOnClickListener {
                 val timePickerDialogFragment =
                     CourseTimePickerDialogFragment(R.layout.dialog_fragment_course_time_picker)
@@ -79,7 +77,6 @@ class AddCourseFragment: Fragment() {
                 )
             }
         }
-
 
     }
 

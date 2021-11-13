@@ -74,9 +74,12 @@ const val TAG_WEEK_PICKER_DIALOG_FRAGMENT = "WeekPickerDialogFragment"
 const val TAG_TIME_PICKER_DIALOG_FRAGMENT = "TimePickerDialogFragment"
 
 // 根据用户实际屏幕长度调整宽高
-// todo 移动
 val courseTimeHeight = MainApplication.contxt.dp2px(57)
 val littleViewWidth = MainApplication.contxt.dp2px(49)
 val weekdayWidth = (MainApplication.contxt.getScreenWidth() - littleViewWidth) / 7
 val weekdayHeight = MainApplication.contxt.dp2px(41)
 val courseTimeWidth = weekdayWidth
+
+
+// LiveDataBus中Key名字
+const val WEEKLY_SCHEDULE_DETAILS = "WEEKLY_SCHEDULE_DETAILS"

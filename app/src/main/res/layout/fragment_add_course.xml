@@ -6,209 +6,269 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <TextView
+    <TextView
+        android:id="@+id/tv_setting_type"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fac_setting_margin_top"
+        android:layout_marginStart="@dimen/fac_setting_margin_start"
+        android:text="@string/basic_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+   <ImageView
        android:id="@+id/tv_add_course_name"
        app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-       android:layout_marginTop="@dimen/fac_margin_top"
+       app:layout_constraintTop_toBottomOf="@id/tv_setting_type"
+       android:layout_marginTop="22dp"
        android:layout_marginLeft="@dimen/fac_item_margin_left"
-       android:text="@string/course_name"
+       android:background="@drawable/ic_course"
        android:textSize="16sp"
        android:textColor="@color/black"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
+       android:layout_width="@dimen/icon_size"
+       android:layout_height="@dimen/icon_size"/>
 
-   <EditText
-       android:id="@+id/edt_add_course_name"
-       android:layout_width="0dp"
-       android:layout_height="@dimen/fac_edt_height"
-       android:layout_marginLeft="@dimen/fac_edt_left_margin"
-       android:layout_marginRight="@dimen/fac_edt_right_margin"
-       app:layout_constraintLeft_toLeftOf="parent"
-       android:background="@drawable/round_text_background"
-       android:textSize="16sp"
-       app:layout_constraintBaseline_toBaselineOf="@+id/tv_add_course_name"
-       app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintLeft_toRightOf="@id/tv_add_course_name"
-       app:layout_constraintRight_toRightOf="parent" />
+    <EditText
+        android:id="@+id/edt_add_course_name"
+        android:lines="1"
+        android:maxLength="20"
+        android:hint="@string/hint_course_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_add_course_name"
+        app:layout_constraintLeft_toRightOf="@id/tv_add_course_name"
+        app:layout_constraintTop_toTopOf="@id/tv_add_course_name"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="5dp"
+        android:background="@null" />
 
- <TextView
+    <ImageView
         android:id="@+id/tv_type"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_add_course_name"
         android:layout_marginTop="@dimen/fac_ver_item_margin_top"
         android:layout_marginLeft="@dimen/fac_item_margin_left"
-        android:text="@string/course_type"
+        android:background="@drawable/ic_type"
         android:textSize="16sp"
         android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"/>
 
     <EditText
         android:id="@+id/edt_type"
         android:layout_width="0dp"
-        android:textSize="16sp"
         android:layout_height="@dimen/fac_edt_height"
-        android:layout_marginLeft="@dimen/fac_edt_left_margin"
-        android:layout_marginRight="@dimen/fac_edt_right_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:background="@drawable/round_text_background"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_type"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@id/tv_type"
-        app:layout_constraintRight_toRightOf="parent" />
-
- <TextView
-        android:id="@+id/tv_location"
-        app:layout_constraintTop_toBottomOf="@id/tv_type"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="@dimen/fac_ver_item_margin_top"
-        android:layout_marginLeft="@dimen/fac_item_margin_left"
-        android:text="@string/course_location"
         android:textSize="16sp"
+        android:hint="暂时不设置"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintTop_toTopOf="@id/tv_type"
+        android:background="@null" />
+
+    <ImageView
+        android:id="@+id/tv_location"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_marginLeft="@dimen/fac_item_margin_left"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_location"
         android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_type" />
 
     <EditText
         android:id="@+id/edt_location"
-        android:background="@drawable/round_text_background"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_location"
-        app:layout_constraintLeft_toRightOf="@id/tv_type"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="@dimen/fac_edt_left_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="@dimen/fac_edt_right_margin"
         android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
         android:textSize="16sp"
-        android:layout_height="@dimen/fac_edt_height"/>
+        android:layout_marginStart="5dp"
+        android:hint="@string/hint_location"
+        android:lines="1"
+        android:maxLength="20"
+        app:layout_constraintBottom_toBottomOf="@id/tv_location"
+        app:layout_constraintLeft_toRightOf="@id/tv_location"
+        app:layout_constraintTop_toTopOf="@id/tv_location"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:background="@null" />
 
-
-     <TextView
+     <ImageView
          android:id="@+id/tv_teacher"
          app:layout_constraintTop_toBottomOf="@id/tv_location"
          app:layout_constraintLeft_toLeftOf="parent"
          android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+         android:layout_marginStart="@dimen/fac_item_margin_left"
+         android:background="@drawable/ic_teacher"
+         android:layout_width="@dimen/icon_size"
+         android:layout_height="@dimen/icon_size"/>
+
+    <EditText
+        android:id="@+id/edt_teacher"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
+        android:hint="@string/hint_teacher_name"
+        android:lines="1"
+        android:maxLength="20"
+        app:layout_constraintBottom_toBottomOf="@id/tv_teacher"
+        app:layout_constraintLeft_toRightOf="@id/tv_teacher"
+        app:layout_constraintTop_toTopOf="@id/tv_teacher"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:background="@null" />
+
+     <ImageView
+         android:id="@+id/tv_priority"
+         app:layout_constraintTop_toBottomOf="@id/tv_teacher"
+         app:layout_constraintLeft_toLeftOf="parent"
+         android:layout_marginTop="@dimen/fac_ver_item_margin_top"
          android:layout_marginLeft="@dimen/fac_item_margin_left"
-         android:text="@string/course_teacher"
-         android:textSize="16sp"
+         android:background="@drawable/ic_priority"
+         android:layout_width="@dimen/icon_size"
+         android:layout_height="@dimen/icon_size"/>
+
+    <EditText
+        android:id="@+id/edt_priority"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
+        android:hint="暂时不设置"
+        app:layout_constraintBottom_toBottomOf="@id/tv_priority"
+        app:layout_constraintLeft_toRightOf="@id/tv_priority"
+        app:layout_constraintTop_toTopOf="@id/tv_priority"
+        android:background="@null" />
+
+     <ImageView
+         android:id="@+id/tv_note"
+         app:layout_constraintTop_toBottomOf="@id/tv_priority"
+         app:layout_constraintLeft_toLeftOf="parent"
+         android:layout_marginTop="@dimen/fac_ver_item_margin_top"
+         android:layout_marginStart="@dimen/fac_item_margin_left"
+         android:background="@drawable/ic_notes"
          android:textColor="@color/black"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"/>
+         android:layout_width="@dimen/icon_size"
+         android:layout_height="@dimen/icon_size"/>
 
- <EditText
-     android:id="@+id/edt_teacher"
-     android:background="@drawable/round_text_background"
-     android:layout_width="0dp"
-     android:textSize="16sp"
-     android:layout_height="@dimen/fac_edt_height"
-     android:layout_marginLeft="@dimen/fac_edt_left_margin"
-     android:layout_marginRight="@dimen/fac_edt_right_margin"
-     app:layout_constraintLeft_toLeftOf="parent"
-     app:layout_constraintBaseline_toBaselineOf="@+id/tv_teacher"
-     app:layout_constraintLeft_toRightOf="@id/tv_type"
-     app:layout_constraintRight_toRightOf="parent" />
+    <EditText
+        android:id="@+id/edt_note"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fac_edt_height"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
+        android:hint="@string/hint_note"
+        android:lines="1"
+        android:maxLength="20"
+        app:layout_constraintBottom_toBottomOf="@id/tv_note"
+        app:layout_constraintLeft_toRightOf="@id/tv_note"
+        app:layout_constraintTop_toTopOf="@id/tv_note"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:background="@null" />
 
- <TextView
-     android:id="@+id/tv_priority"
-     app:layout_constraintTop_toBottomOf="@id/tv_teacher"
-     app:layout_constraintLeft_toLeftOf="parent"
-     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
-     android:layout_marginLeft="@dimen/fac_item_margin_left"
-     android:text="@string/priority"
-     android:textSize="16sp"
-     android:textColor="@color/black"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
+    <View
+        android:id="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@id/edt_note"
+        android:background="@color/divider"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
 
- <EditText
-     android:id="@+id/edt_priority"
-     android:background="@drawable/round_text_background"
-     android:layout_width="0dp"
-     android:textSize="16sp"
-     android:layout_height="@dimen/fac_edt_height"
-     android:layout_marginLeft="@dimen/fac_edt_left_margin"
-     android:layout_marginRight="@dimen/fac_edt_right_margin"
-     app:layout_constraintLeft_toLeftOf="parent"
-     app:layout_constraintBaseline_toBaselineOf="@+id/tv_priority"
-     app:layout_constraintLeft_toRightOf="@id/tv_type"
-     app:layout_constraintRight_toRightOf="parent" />
-
- <TextView
-     android:id="@+id/tv_note"
-     app:layout_constraintTop_toBottomOf="@id/tv_priority"
-     app:layout_constraintLeft_toLeftOf="parent"
-     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
-     android:layout_marginLeft="@dimen/fac_item_margin_left"
-     android:text="@string/note"
-     android:textSize="16sp"
-     android:textColor="@color/black"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
-
- <EditText
-     android:id="@+id/edt_note"
-     android:background="@drawable/round_text_background"
-     android:layout_width="0dp"
-     android:textSize="16sp"
-     android:layout_height="@dimen/fac_edt_height"
-     android:layout_marginLeft="@dimen/fac_edt_left_margin"
-     android:layout_marginRight="@dimen/fac_edt_right_margin"
-     app:layout_constraintLeft_toLeftOf="parent"
-     app:layout_constraintBaseline_toBaselineOf="@+id/tv_note"
-     app:layout_constraintLeft_toRightOf="@id/tv_type"
-     app:layout_constraintRight_toRightOf="parent" />
+    <TextView
+        android:id="@+id/tv_time_settings"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fac_setting_margin_top"
+        android:layout_marginStart="@dimen/fac_setting_margin_start"
+        android:text="@string/time_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
- <TextView
-     android:id="@+id/tv_week_num"
-     app:layout_constraintTop_toBottomOf="@id/tv_note"
-     app:layout_constraintLeft_toLeftOf="parent"
-     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
-     android:layout_marginLeft="@dimen/fac_item_margin_left"
-     android:text="@string/week_num"
-     android:textSize="16sp"
-     android:textColor="@color/black"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
 
- <EditText
-     android:id="@+id/edt_week_num"
-     android:background="@drawable/round_text_background"
-     android:layout_width="0dp"
-     android:textSize="16sp"
-     android:layout_height="@dimen/fac_edt_height"
-     android:layout_marginLeft="@dimen/fac_edt_left_margin"
-     android:layout_marginRight="@dimen/fac_edt_right_margin"
-     app:layout_constraintLeft_toLeftOf="parent"
-     app:layout_constraintBaseline_toBaselineOf="@+id/tv_week_num"
-     app:layout_constraintLeft_toRightOf="@id/tv_type"
-     app:layout_constraintRight_toRightOf="parent" />
+    <com.kolibreath.timetableapp.base.ui.RippleLayout
+        android:id="@+id/layout_week_num"
+        app:layout_constraintTop_toBottomOf="@id/tv_time_settings"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="0dp"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/tv_week_num"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/fac_item_margin_left"
+            android:background="@drawable/ic_week_range"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
 
- <TextView
-     android:id="@+id/tv_time"
-     android:textSize="16sp"
-     android:textColor="@color/black"
-     app:layout_constraintTop_toBottomOf="@id/tv_week_num"
-     app:layout_constraintLeft_toLeftOf="parent"
-     android:layout_marginTop="@dimen/fac_ver_item_margin_top"
-     android:layout_marginLeft="@dimen/fac_item_margin_left"
-     android:text="@string/time"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/edt_week_num"
+            app:layout_constraintBottom_toBottomOf="@id/tv_week_num"
+            app:layout_constraintLeft_toRightOf="@id/tv_week_num"
+            app:layout_constraintTop_toTopOf="@id/tv_week_num"
+            app:layout_constraintRight_toRightOf="parent"
+            android:clickable="false"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:hint="@string/default_week_range"
+            android:background="@null" />
+    </com.kolibreath.timetableapp.base.ui.RippleLayout>
 
- <EditText
-     android:id="@+id/edt_time"
-     android:background="@drawable/round_text_background"
-     android:layout_width="0dp"
-     android:textSize="16sp"
-     android:layout_height="@dimen/fac_edt_height"
-     android:layout_marginLeft="@dimen/fac_edt_left_margin"
-     android:layout_marginRight="@dimen/fac_edt_right_margin"
-     app:layout_constraintLeft_toLeftOf="parent"
-     app:layout_constraintBaseline_toBaselineOf="@+id/tv_time"
-     app:layout_constraintLeft_toRightOf="@id/tv_type"
-     app:layout_constraintRight_toRightOf="parent" />
+
+   <com.kolibreath.timetableapp.base.ui.RippleLayout
+       android:id="@+id/layout_time"
+       app:layout_constraintTop_toBottomOf="@id/layout_week_num"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       android:layout_marginEnd="20dp"
+       android:clickable="true"
+       android:focusable="true"
+       android:background="?android:attr/selectableItemBackground"
+       android:layout_width="0dp"
+       android:layout_height="48dp">
+
+       <ImageView
+           android:id="@+id/tv_time"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:layout_marginStart="@dimen/fac_item_margin_left"
+           android:background="@drawable/ic_time"
+           android:layout_width="@dimen/icon_size"
+           android:layout_height="@dimen/icon_size"/>
+
+       <TextView
+           android:id="@+id/edt_time"
+           android:hint="@string/default_time_range"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:textSize="16sp"
+           app:layout_constraintBottom_toBottomOf="@id/tv_time"
+           app:layout_constraintLeft_toRightOf="@id/tv_time"
+           app:layout_constraintTop_toTopOf="@id/tv_time"
+           app:layout_constraintRight_toRightOf="parent"
+           android:layout_marginStart="5dp"
+           android:background="@null" />
+
+
+   </com.kolibreath.timetableapp.base.ui.RippleLayout>
 
 
 

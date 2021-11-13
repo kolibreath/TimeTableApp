@@ -8,13 +8,16 @@
     <!--  View距离左边的距离  -->
     <dimen name="fac_item_margin_left">32dp</dimen>
     <!--  垂直方向View和View之间的间隔  -->
-    <dimen name="fac_ver_item_margin_top">30dp</dimen>
+    <dimen name="fac_ver_item_margin_top">24dp</dimen>
     <!-- 输入框的高度   -->
-    <dimen name="fac_edt_height">40dp</dimen>
+    <dimen name="fac_edt_height">32dp</dimen>
     <!-- 输入框到左边TextView的间隔   -->
     <dimen name="fac_edt_left_margin">106dp</dimen>
     <!-- 输入框到Parent右边缘的间隔   -->
     <dimen name="fac_edt_right_margin">32dp</dimen>
+    <!--  设置类型距离上面和左边的距离  -->
+    <dimen name="fac_setting_margin_top">10dp</dimen>
+    <dimen name="fac_setting_margin_start">10dp</dimen>
 
     <!-- dialog_fragment_add_schedule_time_picker   -->
     <!--  title距离顶部的高度  -->
@@ -37,4 +40,15 @@
     <dimen name="item_ver_margin">13dp</dimen>
     <dimen name="item_margin_left">10dp</dimen>
     <dimen name="item_margin_right">10dp</dimen>
+
+    <!--  toolbar 中文字大小   -->
+    <dimen name="toolbar_title">18sp</dimen>
+
+    <!--  layout_item_detail  -->
+    <!-- 每一个字段间距大小     -->
+    <dimen name="detail_field_margin_top">5dp</dimen>
+    <!-- 每一个字段间隔左边imageButton的大小   -->
+    <dimen name="detail_field_margin_start">12dp</dimen>
+
+    <dimen name="icon_size">24dp</dimen>
 </resources>
